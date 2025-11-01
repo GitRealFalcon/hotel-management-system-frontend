@@ -1,13 +1,109 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import { useForm } from 'react-hook-form'
+import { useNavigate, Link } from 'react-router-dom'
+import { useSelector, useDispatch } from 'react-redux'
+import { Input, Button } from './index'
+import loginUser from '../features/auth/authThunks'
+import { toast } from 'react-toastify'
 
 const Login = () => {
+  const { register, handleSubmit, formState: { errors } } = useForm()
+  const { loading, error, isAuthenticated } = useSelector((state) => state.auth)
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
+
+  // ✅ Redirect after successful login
+  useEffect(() => {
+    if (isAuthenticated) {
+       toast.success('Login successful! 🎉')
+      navigate('/profile')
+    }
+  }, [isAuthenticated, navigate])
+
+  useEffect(() => {
+    if (error) {
+      toast.error(error)
+    }
+  }, [error])
+
+  // ✅ Handle login submission
+  const onSubmit = (data) => {
+    dispatch(loginUser(data))
+  }
+
   return (
-    <div>
-      
+    <div className="flex flex-col items-center justify-center min-h-screen p-6 bg-gray-50">
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        className="w-full max-w-md p-6 bg-white shadow-md rounded-md"
+      >
+        <div className="text-center text-2xl font-bold mb-4">LOGO</div>
+
+        <div className="text-sm text-center mb-6">
+          Don&apos;t have an account?&nbsp;
+          <Link
+            to="/signup"
+            className="font-medium text-primary transition-all duration-200 hover:underline"
+          >
+            Sign Up
+          </Link>
+        </div>
+
+        {/* Email Input */}
+        <Input
+          type="email"
+          label="Email :"
+          placeholder="Enter your email"
+          {...register('email', {
+            required: 'Email is required',
+            validate: {
+              matchPattern: (value) =>
+                /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(value) ||
+                'Email address must be a valid address',
+            },
+          })}
+        />
+        {errors.email && (
+          <p className="text-red-500 text-sm mt-1">{errors.email.message}</p>
+        )}
+
+        {/* Password Input */}
+        <Input
+          type="password"
+          label="Password :"
+          placeholder="Enter your password"
+          {...register('password', {
+            required: 'Password is required',
+            minLength: {
+              value: 8,
+              message: 'Password must be at least 8 characters',
+            },
+            pattern: {
+              value:
+                /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
+              message:
+                'Password must include uppercase, lowercase, number, and special character',
+            },
+          })}
+        />
+        {errors.password && (
+          <p className="text-red-500 text-sm mt-1">{errors.password.message}</p>
+        )}
+
+        {/* Error message from API or Redux */}
+        {error && (
+          <p className="text-red-600 text-center text-sm mt-3">{error}</p>
+        )}
+
+        {/* Submit button */}
+        <div className="mt-6">
+          <Button type="submit" disabled={loading}>
+            {loading ? 'Signing in...' : 'Sign in'}
+          </Button>
+        </div>
+      </form>
     </div>
   )
 }
 
 export default Login
-
-  
