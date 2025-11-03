@@ -1,6 +1,8 @@
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
-
+import Navbar from './components/navbar/Navbar'
+import Home from './pages/Home'
+import { ClassNames } from '@emotion/react'
 function App() {
 
   return (
@@ -17,6 +19,8 @@ function App() {
         pauseOnHover
         theme="light"
       />
+      <Navbar/>
+      <Home/>
   </>
   )
 }

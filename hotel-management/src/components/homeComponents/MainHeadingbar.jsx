@@ -1,0 +1,28 @@
+import React from 'react'
+import Logo from '../Logo'
+import Button from "../Button"
+
+const MainHeadingbar = () => {
+  return (
+  <div className='w-full mt-4 h-30 flex justify-around items-center p-1 '>
+      <div className='logo w-[20%] flex justify-end items-center '>
+        <Logo/>
+      </div>
+      <div className='h-[90%] border-x border-gray-400'></div>
+      <div className='heading w-[50%] h-[90%] flex flex-col justify-around'>
+            <div className='text-red-700 w-fit border-2 font-semibold border-red-700 rounded-md px-1'>HOTEL SELLING FAST</div>
+            <h1 className='text-3xl font-bold font-serif'>
+                Falcon Plaza Hotel & Event Center
+            </h1>
+      </div>
+      <div className='offerCheckout h-[90%] w-[20%]  flex flex-col justify-between py-1'>
+        <div className='font-mono flex items-center gap-0.5'>
+            <p className='font-bold text-2xl'>₹2500</p><p className='text-sm text-gray-500'>INR/night</p>
+        </div>
+        <Button children={"View Rooms"} className='font-semibold w-fit'/>
+      </div>
+    </div>
+  )
+}
+
+export default MainHeadingbar
