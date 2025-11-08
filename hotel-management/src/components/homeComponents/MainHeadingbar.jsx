@@ -4,9 +4,9 @@ import Button from "../Button"
 
 const MainHeadingbar = () => {
   return (
-  <div className='w-full mt-4 h-30 flex justify-around items-center p-1 '>
+  <div className='w-full mt-4 h-30 flex justify-around items-center p-1'>
       <div className='logo w-[20%] flex justify-end items-center '>
-        <Logo/>
+        <Logo height={100} width={100}/>
       </div>
       <div className='h-[90%] border-x border-gray-400'></div>
       <div className='heading w-[50%] h-[90%] flex flex-col justify-around'>
@@ -19,7 +19,7 @@ const MainHeadingbar = () => {
         <div className='font-mono flex items-center gap-0.5'>
             <p className='font-bold text-2xl'>₹2500</p><p className='text-sm text-gray-500'>INR/night</p>
         </div>
-        <Button children={"View Rooms"} className='font-semibold w-fit'/>
+        <Button children={"View Rooms"} className='bg-gradient-to-tl h-fit from-gray-300 to-gray-950 text-white font-semibold w-fit'/>
       </div>
     </div>
   )

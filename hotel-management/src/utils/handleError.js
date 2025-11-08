@@ -1,5 +1,5 @@
 
-export const hendleError = (error)=>{
+ const hendleError = (error)=>{
     if (error.response) {
         const {status, data} = error
     const    massage = data?.massage || data?.error || `Request failed with status ${status}`;
@@ -14,3 +14,4 @@ export const hendleError = (error)=>{
     return error.message || "Unexpected error occurred.";
 }
 
+export default hendleError

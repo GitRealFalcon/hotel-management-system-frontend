@@ -4,6 +4,8 @@ import BasicDateCalendar from "../components/Calendar/Calendar";
 import dayjs from "dayjs";
 import Logo from "../components/Logo";
 import MainHeadingbar from "../components/homeComponents/mainHeadingbar";
+import ImageCollage from "../components/homeComponents/ImageCollage";
+import RoomSection from "../components/homeComponents/RoomSection";
 
 const Home = () => {
   const [CheckInDate, setCheckInDate] = useState(dayjs().format("ddd, MMM DD"));
@@ -58,9 +60,9 @@ const Home = () => {
   }, [calShow,addRoomShow]);
 
   return (
-    <div className="absolute top-0 w-full bg-[#FFFFFF]">
+    <div className="absolute z-0 top-0 w-full ">
       <div className="overflow-x-hidden">
-        <div className='rounded-b-[100%] z-0 flex flex-col justify-center items-center ml-[-50%] w-[200%] h-[500px] bg-cover bg-center bg-[url("public/4k-hotel.jpg")] invert-5'>
+        <div className='rounded-b-[100%] z-2 flex flex-col justify-center items-center ml-[-50%] w-[200%] h-[500px] bg-cover bg-center bg-[url("/4k-hotel.jpg")] invert-5'>
           {/* Booking tab full */}
           <div className="lg:hidden w-1/3 h-45 bg-gradient-to-br justify-between items-center rounded-2xl shadow-xl backdrop-filter backdrop-blur-sm bg-opacity-0 from-gray-400 p-1">
 
@@ -213,6 +215,8 @@ const Home = () => {
       </div>
       <Container>
        <MainHeadingbar/>
+       <ImageCollage/>
+          <RoomSection/>
       </Container>
     </div>
   );

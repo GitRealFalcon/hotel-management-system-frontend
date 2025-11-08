@@ -12,11 +12,11 @@ const Navbar = () => {
 
    
     return (
-        <div className='relative z-10 bg-gradient-to-br shadow-xl backdrop-filter backdrop-blur-sm bg-opacity-0 from-gray-400 h-18 p-2'>
-            <nav className=' p-1 -red-400 w-full flex justify-between'>
+        <div className='sticky w-full top-0 z-30 bg-gradient-to-br shadow-xl backdrop-filter backdrop-blur-sm bg-opacity-0 from-gray-400 h-18 px-2'>
+            <nav className=' p-1 -red-400 w-full flex justify-between '>
 
-                <div className=' lg:w-1/3' >
-                   <Logo/>
+                <div className='  lg:w-1/3' >
+                   <Logo width={54}/>
                 </div>
 
                 <div  >
@@ -52,9 +52,9 @@ const Navbar = () => {
                         <Button children={"Login"} className='bg-gradient-to-br  from-gray-300 to-gray-950 text-white font-semibold' />
                     </div>}
 
-                    {isLogin && <div className='hidden lg:flex gap-2 '>
+                    {isLogin && <div className='hidden lg:flex gap-2  items-center'>
                         <div className='flex font-bold mr-5 items-center '>Mohd Naeem</div>
-                        <Button className='bg-gradient-to-tl  from-gray-300 to-gray-950 text-white font-semibold' children={"Logout"} />
+                        <Button className='bg-gradient-to-tl h-fit from-gray-300 to-gray-950 text-white font-semibold' children={"Logout"} />
                         <div>
                             <Select className="bg-gradient-to-tr text-white font-semibold  from-gray-300 to-gray-950" options={option} />
                         </div>
