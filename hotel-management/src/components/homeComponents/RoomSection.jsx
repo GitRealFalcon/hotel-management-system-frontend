@@ -3,33 +3,32 @@ import RoomCard from '../RoomCard'
 import { useState, useRef, useEffect } from 'react'
 import Select from '../Select'
 import api from '../../api/axios'
-import { getRooms } from '../../features/rooms/roomSlice'
+
 import { useSelector, useDispatch } from 'react-redux'
 import { toast } from 'react-toastify'
 
-const RoomSection = () => {
-  const data = useSelector((state) => state.room.roomsData)
+const RoomSection = ({ref}) => {
+  const data = useSelector((state) => state.room.roomsData) 
   const [rooms, setRooms] = useState([])
   const [capFilter, setcapFilter] = useState([])
   const selectRef = useRef()
-  const dispatch = useDispatch()
- 
-  useEffect(() => {
-    (async () => {
-      try {
-        const res = await api.get("/rooms/all-rooms", { withCredentials: true });
-        dispatch(getRooms(res.data.data));
-        
-      } catch (error) {
-        console.error(error);
-        toast.error("Failed to load rooms");
-      }
-    })();
-  }, [dispatch]);
-
   
+
+  // useEffect(() => {
+  //   (async () => {
+  //     try {
+  //       const res = await api.get("/rooms/all-rooms", { withCredentials: true });
+  //       dispatch(getRooms(res.data.data));
+  //     } catch (error) {
+  //       console.error(error);
+  //       toast.error("Failed to load rooms");
+  //     }
+  //   })();
+  // }, [dispatch]);
+
+
   useEffect(() => {
-    setRooms(data.filter((room)=>room.isAvailable));
+    setRooms(data.filter((room) => room.isAvailable));
   }, [data]);
 
 
@@ -54,21 +53,9 @@ const RoomSection = () => {
   }
 
   useEffect(() => {
-    let tempFilter = []
-    for (let i = 0; i < rooms.length; i++) {
-      let isExist = false
-      for (let j = 0; j < tempFilter.length; j++) {
-        if (rooms[i].capacity === tempFilter[j].capacity) {
-          isExist = true
-          break
-        }
-      }
-
-      if (!isExist) {
-        tempFilter.push(rooms[i])
-      }
-
-    }
+    const tempFilter = Array.from(
+      new Map(rooms.map(room => [room.capacity, room])).values()
+    );
     setcapFilter(tempFilter)
   }, [rooms])
 
@@ -81,11 +68,11 @@ const RoomSection = () => {
 
 
   return (
-    <div className='mt-4 flex flex-col gap-4'>
+    <div ref={ref} className='mt-4 flex flex-col gap-4'>
 
       <div className='flex flex-col gap-2'>
         <span className='text-orange-700 font-semibold'>Guest Rooms</span>
-        <h1 className='text-2xl font-bold'>Available Guest Rooms</h1>
+        <h1 className='text-3xl font-bold font-serif'>Available Guest Rooms</h1>
       </div>
 
       <div className='flex gap-2 '>

@@ -1,8 +1,29 @@
 import React from 'react'
 import Logo from '../Logo'
 import Button from "../Button"
+import api from '../../api/axios'
+import { useDispatch } from 'react-redux'
+import { getRooms } from '../../features/rooms/roomSlice'
 
-const MainHeadingbar = () => {
+
+const MainHeadingbar = ({scrollRef,CheckInDate,CheckOutDate,guest}) => {
+   const dispatch = useDispatch()
+  const findRooms = async()=>{
+   
+    try {
+      const res = await api.get("/rooms/available-room",{params:{CheckInDate,CheckOutDate,guest}})
+      dispatch(getRooms(res.data.data))
+      scrollToRooms()
+      
+    } catch (error) {
+      console.error(error)
+      
+    }
+  }
+   const scrollToRooms = () => {
+    scrollRef.current?.scrollIntoView({ behavior: "smooth" });
+    
+  }
   return (
   <div className='w-full mt-4 h-30 flex justify-around items-center p-1'>
       <div className='logo w-[20%] flex justify-end items-center '>
@@ -19,7 +40,7 @@ const MainHeadingbar = () => {
         <div className='font-mono flex items-center gap-0.5'>
             <p className='font-bold text-2xl'>₹2500</p><p className='text-sm text-gray-500'>INR/night</p>
         </div>
-        <Button children={"View Rooms"} className='bg-gradient-to-tl h-fit from-gray-300 to-gray-950 text-white font-semibold w-fit'/>
+        <Button onClick={findRooms} children={"View Rooms"} className='bg-gradient-to-tl h-fit from-gray-300 to-gray-950 text-white font-semibold w-fit'/>
       </div>
     </div>
   )

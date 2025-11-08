@@ -6,6 +6,7 @@ import Logo from "../components/Logo";
 import MainHeadingbar from "../components/homeComponents/mainHeadingbar";
 import ImageCollage from "../components/homeComponents/ImageCollage";
 import RoomSection from "../components/homeComponents/RoomSection";
+import Map from "../components/homeComponents/map";
 
 const Home = () => {
   const [CheckInDate, setCheckInDate] = useState(dayjs().format("ddd, MMM DD"));
@@ -15,11 +16,14 @@ const Home = () => {
   const [calShow, setCalShow] = useState(false);
   const [addRoomShow, setAddroomShow] = useState(false);
   const [activeField, setActiveField] = useState(null); // "checkin" or "checkout"
-  const [bookingRoom,setBookingRoom] = useState(1)
-  const [guest,setGuest] = useState(1)
+  const [bookingRoom, setBookingRoom] = useState(1)
+  const [guest, setGuest] = useState(1)
 
   const calendarRef = useRef(null);
-  const addRoomRef = useRef(null)
+  const addRoomRef = useRef(null);
+  const roomSectionRef = useRef(null)
+
+ 
   // handle date selection from calendar
   const handleDateSelect = (date) => {
     const formatted = date.format("ddd, MMM DD");
@@ -57,7 +61,7 @@ const Home = () => {
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
-  }, [calShow,addRoomShow]);
+  }, [calShow, addRoomShow]);
 
   return (
     <div className="absolute z-0 top-0 w-full ">
@@ -99,7 +103,7 @@ const Home = () => {
             <div className="border-y mx-auto w-11/12 border-gray-400"></div>
             <div className="w-full h-1/2 flex justify-between items-center">
 
-              <div onClick={()=>setAddroomShow(!addRoomShow)} className="pl-6 p-2 w-[48%] cursor-pointer rounded-2xl hover:bg-black/10">
+              <div onClick={() => setAddroomShow(!addRoomShow)} className="pl-6 p-2 w-[48%] cursor-pointer rounded-2xl hover:bg-black/10">
 
                 <div className="text-gray-200">Rooms & guests</div>
                 <div className="font-sens-serif font-semibold">
@@ -147,7 +151,7 @@ const Home = () => {
             </div>
             <div className="border-x h-1/2 border-gray-400"></div>
 
-            <div onClick={()=>setAddroomShow(!addRoomShow)} className=" p-2 w-1/5 cursor-pointer rounded-2xl hover:bg-black/10">
+            <div onClick={() => setAddroomShow(!addRoomShow)} className=" p-2 w-1/5 cursor-pointer rounded-2xl hover:bg-black/10">
 
               <div className="text-gray-300">Rooms & guests</div>
               <div className="font-sens-serif font-semibold">
@@ -189,16 +193,16 @@ const Home = () => {
       </div>
       <div ref={addRoomRef} className={`fixed left-1/2 top-72  backdrop-filter backdrop-blur-sm bg-gradient-to-br translate-y-2 from-gray-400/30 to-gray-900/10
               transition-all duration-300 ease-in-out transform w-1/3 h-40 flex flex-col justify-around items-center rounded-lg  ${addRoomShow
-            ? "opacity-100 scale-100 visible"
-            : "opacity-0 scale-95 invisible pointer-events-none"
-          }`}>
+          ? "opacity-100 scale-100 visible"
+          : "opacity-0 scale-95 invisible pointer-events-none"
+        }`}>
         <div className="w-full h-1/3 flex items-center  justify-around">
           <div className="font-semibold text-center w-[30%] ">Room</div>
           <div className="h-[90%] border-x border-gray-400"></div>
           <div className="flex justify-around w-[50%] items-center ">
-            <div onClick={()=>setBookingRoom(bookingRoom > 1 ? bookingRoom - 1 :1 )} className="w-10 h-10 cursor-pointer  hover:bg-gray-600 bg-gray-700 text-white flex justify-center pb-2 items-center text-4xl rounded-full"><p>-</p></div>
+            <div onClick={() => setBookingRoom(bookingRoom > 1 ? bookingRoom - 1 : 1)} className="w-10 h-10 cursor-pointer  hover:bg-gray-600 bg-gray-700 text-white flex justify-center pb-2 items-center text-4xl rounded-full"><p>-</p></div>
             <div className="font-semibold">{bookingRoom}</div>
-            <div onClick={()=>setBookingRoom(bookingRoom  + 1)} className="w-10 h-10 cursor-pointer  hover:bg-gray-600 bg-gray-700 text-white flex justify-center pb-2 items-center text-3xl rounded-full"><p>+</p></div>
+            <div onClick={() => setBookingRoom(bookingRoom + 1)} className="w-10 h-10 cursor-pointer  hover:bg-gray-600 bg-gray-700 text-white flex justify-center pb-2 items-center text-3xl rounded-full"><p>+</p></div>
           </div>
         </div>
 
@@ -207,16 +211,17 @@ const Home = () => {
           <div className="font-semibold text-center w-[30%]">Guest</div>
           <div className="h-[90%] border-x border-gray-400"></div>
           <div className="flex w-[50%] justify-around items-center ">
-            <div onClick={()=>setGuest(guest > 1 ? guest - 1 : 1)} className="cursor-pointer  hover:bg-gray-600 w-10 h-10 bg-gray-700 text-white flex justify-center pb-2 items-center text-4xl rounded-full"><p>-</p></div>
+            <div onClick={() => setGuest(guest > 1 ? guest - 1 : 1)} className="cursor-pointer  hover:bg-gray-600 w-10 h-10 bg-gray-700 text-white flex justify-center pb-2 items-center text-4xl rounded-full"><p>-</p></div>
             <div className="font-semibold">{guest}</div>
-            <div onClick={()=>setGuest(guest + 1)} className="w-10 cursor-pointer  hover:bg-gray-600 h-10 bg-gray-700 text-white flex justify-center pb-2 items-center text-3xl rounded-full"><p>+</p></div>
+            <div onClick={() => setGuest(guest + 1)} className="w-10 cursor-pointer  hover:bg-gray-600 h-10 bg-gray-700 text-white flex justify-center pb-2 items-center text-3xl rounded-full"><p>+</p></div>
           </div>
         </div>
       </div>
       <Container>
-       <MainHeadingbar/>
-       <ImageCollage/>
-          <RoomSection/>
+        <MainHeadingbar scrollRef={roomSectionRef} />
+        <ImageCollage />
+        <RoomSection ref={roomSectionRef} />
+        <Map/>
       </Container>
     </div>
   );
