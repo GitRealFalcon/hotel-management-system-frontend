@@ -6,6 +6,7 @@ import api from '../../api/axios'
 
 import { useSelector, useDispatch } from 'react-redux'
 import { toast } from 'react-toastify'
+import { getRooms } from '../../features/rooms/roomSlice'
 
 const RoomSection = ({ref}) => {
   const data = useSelector((state) => state.room.roomsData) 
@@ -13,18 +14,18 @@ const RoomSection = ({ref}) => {
   const [capFilter, setcapFilter] = useState([])
   const selectRef = useRef()
   
-
-  // useEffect(() => {
-  //   (async () => {
-  //     try {
-  //       const res = await api.get("/rooms/all-rooms", { withCredentials: true });
-  //       dispatch(getRooms(res.data.data));
-  //     } catch (error) {
-  //       console.error(error);
-  //       toast.error("Failed to load rooms");
-  //     }
-  //   })();
-  // }, [dispatch]);
+const dispatch = useDispatch()
+  useEffect(() => {
+    (async () => {
+      try {
+        const res = await api.get("/rooms/all-rooms", { withCredentials: true });
+        dispatch(getRooms(res.data.data));
+      } catch (error) {
+        console.error(error);
+        toast.error("Failed to load rooms");
+      }
+    })();
+  }, [dispatch]);
 
 
   useEffect(() => {
@@ -44,7 +45,7 @@ const RoomSection = ({ref}) => {
 
   const handleSelect = (e) => {
     if (e.target.value === "All") {
-      setRooms(data)
+       setRooms(data.filter((room) => room.isAvailable));
     } else {
       const [min, max] = e.target.value.split(" ").map(Number)
       const filterRooms = data.filter((room) => room.price >= min && room.price <= max)

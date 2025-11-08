@@ -3,7 +3,7 @@ import Container from "../components/Container/Container";
 import BasicDateCalendar from "../components/Calendar/Calendar";
 import dayjs from "dayjs";
 import Logo from "../components/Logo";
-import MainHeadingbar from "../components/homeComponents/mainHeadingbar";
+import MainHeadingbar from "../components/homeComponents/MainHeadingbar";
 import ImageCollage from "../components/homeComponents/ImageCollage";
 import RoomSection from "../components/homeComponents/RoomSection";
 import Map from "../components/homeComponents/map";
@@ -64,7 +64,7 @@ const Home = () => {
   }, [calShow, addRoomShow]);
 
   return (
-    <div className="absolute z-0 top-0 w-full ">
+    <div className="relative w-full min-h-screen">
       <div className="overflow-x-hidden">
         <div className='rounded-b-[100%] z-2 flex flex-col justify-center items-center ml-[-50%] w-[200%] h-[500px] bg-cover bg-center bg-[url("/4k-hotel.jpg")] invert-5'>
           {/* Booking tab full */}
@@ -107,7 +107,7 @@ const Home = () => {
 
                 <div className="text-gray-200">Rooms & guests</div>
                 <div className="font-sens-serif font-semibold">
-                  1 room, 1 guest
+                 {`${guest} guest, ${bookingRoom} room`}
                 </div>
               </div>
               <div className="border-x h-1/2 border-gray-400"></div>
@@ -155,7 +155,7 @@ const Home = () => {
 
               <div className="text-gray-300">Rooms & guests</div>
               <div className="font-sens-serif font-semibold">
-                1 room, 1 guest
+                 {`${guest} guest, ${bookingRoom} room`}
               </div>
             </div>
             <div className="border-x h-1/2 border-gray-400"></div>

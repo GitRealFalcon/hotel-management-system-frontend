@@ -2,13 +2,27 @@ import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import Navbar from './components/navbar/Navbar'
 import Home from './pages/Home'
+import Footer from './components/footer/Footer'
+import { Outlet } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
+import {fetchUser} from "./features/auth/authThunks"
+import { useEffect } from 'react'
 
 function App() {
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+      dispatch(fetchUser())
+  }, [dispatch])
+  
 
   return (
-  <div className='relative min-h-screen overflow-x-hidden' >
-    <div class="absolute top-0 -z-10  w-screen rotate-180 transform bg-white bg-[radial-gradient(60%_120%_at_50%_50%,hsla(0,0%,100%,0)_0,rgba(252,205,238,.5)_100%)]"><div className='shadow-xl backdrop-filter backdrop-blur-sm bg-opacity-0 from-gray-800 bg-gradient-to-br '></div></div>
-  <ToastContainer
+  <div className="flex flex-col min-h-screen overflow-x-hidden relative">
+     
+     <div className="absolute inset-0 -z-10 bg-[radial-gradient(60%_120%_at_50%_50%,rgba(252,205,238,0.5)_0%,white_100%)]"></div>
+
+     
+      <ToastContainer
         position="top-right"
         autoClose={3000}
         hideProgressBar={false}
@@ -20,9 +34,14 @@ function App() {
         pauseOnHover
         theme="light"
       />
-      <Navbar/>
-      <Home/>
-  </div>
+
+     
+      <Navbar />
+      <main className="flex-grow">
+       <Outlet/>
+      </main>
+      <Footer />
+    </div>
   )
 }
 

@@ -16,7 +16,7 @@ const Signup = () => {
   // ✅ Redirect if user already logged in
   useEffect(() => {
     if (isAuthenticated) {
-      navigate('/profile')
+      navigate('/')
     }
   }, [isAuthenticated, navigate])
 
@@ -37,10 +37,10 @@ const Signup = () => {
   }
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-50 p-6">
+    <div className="flex flex-col items-center justify-center min-h-screen  p-6">
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="w-full max-w-md p-6 bg-white shadow-md rounded-md"
+        className="w-full max-w-md p-6 flex flex-col gap-2 bg-white shadow-md rounded-lg"
       >
         <h2 className="text-2xl font-bold text-center mb-4">Create an Account</h2>
 
@@ -59,13 +59,13 @@ const Signup = () => {
           type="text"
           label="Full Name :"
           placeholder="Enter your full name"
-          {...register('name', {
+          {...register('fullName', {
             required: 'Full name is required',
             minLength: { value: 3, message: 'Name must be at least 3 characters' },
           })}
         />
-        {errors.name && (
-          <p className="text-red-500 text-sm mt-1">{errors.name.message}</p>
+        {errors.fullName && (
+          <p className="text-red-500 text-sm mt-1">{errors.fullName.message}</p>
         )}
 
         {/* Email */}

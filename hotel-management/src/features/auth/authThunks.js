@@ -8,16 +8,17 @@ export const loginUser = createAsyncThunk(
   async (credentials, thunkAPI) => {
     try {
       const res = await api.post("users/login", credentials);
+      
 
       // Save token
-      const token = res.data?.token;
+      const token = res.data.data?.token;
       if (token) {
         localStorage.setItem("token", token);
       }
 
       // Return structured payload
       return {
-        user: res.data?.user,
+        user: res.data.data?.user,
         token,
       };
     } catch (error) {
@@ -38,7 +39,7 @@ export const fetchUser = createAsyncThunk(
         : {};
 
       const res = await api.get("users/get-user-details", config);
-      return res.data;
+      return res.data.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(handleError(error));
     }
