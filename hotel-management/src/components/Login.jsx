@@ -17,7 +17,7 @@ const Login = () => {
   useEffect(() => {
     if (isAuthenticated) {
        toast.success('Login successful! 🎉')
-      navigate('/')
+      navigate('/profile')
     }
   }, [isAuthenticated, navigate])
 
@@ -93,7 +93,7 @@ const Login = () => {
 
         {/* Error message from API or Redux */}
         {error && (
-          <p className="text-red-600 text-center text-sm mt-3">{error}</p>
+          <p className="text-red-600 text-center font-semibold text-sm mt-3">{error}</p>
         )}
 
         {/* Submit button */}

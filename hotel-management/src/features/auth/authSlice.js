@@ -6,6 +6,7 @@ const initialState = {
   loading: false,
   error: null,
   isAuthenticated: false,
+   status: "idle",
 };
 
 const authSlice = createSlice({
@@ -24,31 +25,37 @@ const authSlice = createSlice({
       .addCase(loginUser.pending, (state) => {
         state.loading = true;
         state.error = null;
+        state.status = "loading";
       })
       .addCase(loginUser.fulfilled, (state, action) => {
-        
+         state.status = "succeeded";
         state.loading = false;
         state.user = action.payload.user;
         state.isAuthenticated = true;
       })
       .addCase(loginUser.rejected, (state, action) => {
+         state.status = "succeeded";
         state.loading = false;
         state.error = action.payload || "Login failed";
       })
       // Fetch user
       .addCase(fetchUser.pending, (state) => {
+         state.status = "loading";
         state.loading = true;
         state.error = null;
       })
       .addCase(fetchUser.fulfilled, (state, action) => {
+        console.log("fetchUser"); 
         state.loading = false;
         state.user = action.payload;
         state.isAuthenticated = true;
+         state.status = "succeeded";
       })
       .addCase(fetchUser.rejected, (state, action) => {
         state.loading = false;
         // state.error = action.payload || "Unable to fetch user";
         state.isAuthenticated = false;
+        state.status = "failed";
       });
   },
 });

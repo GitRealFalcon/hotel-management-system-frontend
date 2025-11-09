@@ -9,9 +9,9 @@ import RoomSection from "../components/homeComponents/RoomSection";
 import Map from "../components/homeComponents/map";
 
 const Home = () => {
-  const [CheckInDate, setCheckInDate] = useState(dayjs().format("ddd, MMM DD"));
+  const [CheckInDate, setCheckInDate] = useState(dayjs().format("ddd, MMM DD YYYY"));
   const [CheckOutDate, setCheckOutDate] = useState(
-    dayjs().add(1, "day").format("ddd, MMM DD")
+    dayjs().add(1, "day").format("ddd, MMM DD YYYY")
   );
   const [calShow, setCalShow] = useState(false);
   const [addRoomShow, setAddroomShow] = useState(false);
@@ -23,10 +23,10 @@ const Home = () => {
   const addRoomRef = useRef(null);
   const roomSectionRef = useRef(null)
 
- 
+
   // handle date selection from calendar
   const handleDateSelect = (date) => {
-    const formatted = date.format("ddd, MMM DD");
+    const formatted = date.format("ddd, MMM DD YYYY");
 
     if (activeField === "checkin") {
       setCheckInDate(formatted);
@@ -57,6 +57,8 @@ const Home = () => {
     } else {
       document.removeEventListener("mousedown", handleClickOutside);
     }
+
+    
     // Cleanup on unmount or hide
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
@@ -107,7 +109,7 @@ const Home = () => {
 
                 <div className="text-gray-200">Rooms & guests</div>
                 <div className="font-sens-serif font-semibold">
-                 {`${guest} guest, ${bookingRoom} room`}
+                  {`${guest} guest, ${bookingRoom} room`}
                 </div>
               </div>
               <div className="border-x h-1/2 border-gray-400"></div>
@@ -155,7 +157,7 @@ const Home = () => {
 
               <div className="text-gray-300">Rooms & guests</div>
               <div className="font-sens-serif font-semibold">
-                 {`${guest} guest, ${bookingRoom} room`}
+                {`${guest} guest, ${bookingRoom} room`}
               </div>
             </div>
             <div className="border-x h-1/2 border-gray-400"></div>
@@ -186,7 +188,7 @@ const Home = () => {
           onDateSelect={handleDateSelect}
           minDate={
             activeField === "checkout"
-              ? dayjs(CheckInDate, "ddd, MMM DD")
+              ? dayjs(CheckInDate).add(1, "day")
               : dayjs()
           }
         />
@@ -221,7 +223,7 @@ const Home = () => {
         <MainHeadingbar scrollRef={roomSectionRef} />
         <ImageCollage />
         <RoomSection ref={roomSectionRef} />
-        <Map/>
+        <Map />
       </Container>
     </div>
   );

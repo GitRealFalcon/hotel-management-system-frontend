@@ -8,7 +8,6 @@ export const loginUser = createAsyncThunk(
   async (credentials, thunkAPI) => {
     try {
       const res = await api.post("users/login", credentials);
-      
 
       // Save token
       const token = res.data.data?.token;

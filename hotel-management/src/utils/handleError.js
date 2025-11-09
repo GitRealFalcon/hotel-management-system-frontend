@@ -1,10 +1,11 @@
 
  const hendleError = (error)=>{
     if (error.response) {
-        const {status, data} = error
-    const    massage = data?.massage || data?.error || `Request failed with status ${status}`;
+        const status = error.response?.status
+        const  data = error.response?.data
+    const  message = data?.message || data?.error || `Request failed with status ${status}`;
 
-        return massage
+        return message
     }
 
     if (error.request) {

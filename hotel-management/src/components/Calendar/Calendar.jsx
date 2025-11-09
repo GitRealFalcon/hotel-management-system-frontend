@@ -7,7 +7,7 @@ import { DateCalendar } from "@mui/x-date-pickers/DateCalendar";
 
 export default function BasicDateCalendar({ onDateSelect, minDate }) {
   const [value, setValue] = React.useState(dayjs());
-
+      
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
       <DateCalendar
@@ -16,6 +16,8 @@ export default function BasicDateCalendar({ onDateSelect, minDate }) {
           setValue(newValue);
           if (onDateSelect) onDateSelect(newValue);
         }}
+       
+        
         minDate={minDate || dayjs()} // 🔥 disable all dates before today
         // shouldDisableDate={(date) => date.day() === 0 || date.day() === 6}
         sx={{

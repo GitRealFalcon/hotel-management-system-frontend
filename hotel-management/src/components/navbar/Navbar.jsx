@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState,useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import Button from '../Button'
 import Select from '../Select'
@@ -8,14 +8,17 @@ import { useSelector,useDispatch } from 'react-redux';
 import { logOut } from '../../features/auth/authSlice';
 import { toast } from 'react-toastify';
 import api from '../../api/axios';
+import { useNavigate,useLocation } from 'react-router-dom';
 
 
     
 const Navbar = () => {
-    const option = ["Profile", "Setting", "Bookings"]
+    const [selected, setSelected] = useState("");
+    const option = ["Select","Profile", "Hitory", "Booking"]
      const {  isAuthenticated, user } = useSelector((state) => state.auth)
      const dispatch = useDispatch()
-    
+     const navigate = useNavigate()
+    const location = useLocation()
     const handleLogout = async()=>{
         try {
             await api.get("users/logout")
@@ -27,6 +30,28 @@ const Navbar = () => {
         }
     }
     
+    const handleSelect = (e)=>{
+
+        setSelected(e.target.value)
+
+        switch (e.target.value) {
+            case "Profile":
+                navigate("/profile")
+                break;
+            case "Hitory":
+                navigate("/history")
+                break;
+            case "Booking":
+                navigate("/bookings")
+                break;   
+            default:
+                break;
+        }
+    }
+
+     useEffect(() => {
+    setSelected("");
+  }, [location.pathname]);
    
     return (
         <div className='fixed w-full top-0 z-30 bg-gradient-to-br shadow-xl backdrop-filter backdrop-blur-sm bg-opacity-0 from-gray-400 h-18 px-2'>
@@ -73,7 +98,7 @@ const Navbar = () => {
                         <div className='flex font-bold mr-5 items-center '>{user.fullName}</div>
                         <Button onClick={handleLogout} className='bg-gradient-to-tl h-fit from-gray-300 to-gray-950 text-white font-semibold' children={"Logout"} />
                         <div>
-                            <Select className="bg-gradient-to-tr text-white font-semibold  from-gray-300 to-gray-950" options={option} />
+                            <Select  value={selected}   onChange={handleSelect} className="bg-gradient-to-tr text-white font-semibold  from-gray-300 to-gray-950" options={option} />
                         </div>
                     </div>}
                     <div className='block p-1 lg:hidden'><span className="material-symbols-outlined">

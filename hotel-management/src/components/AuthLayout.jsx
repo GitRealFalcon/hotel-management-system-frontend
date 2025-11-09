@@ -1,23 +1,31 @@
-import React, {useEffect,useState} from 'react'
-import { useSelector } from 'react-redux'
-import { useNavigate } from 'react-router-dom'
+import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import { useNavigate, useLocation } from "react-router-dom";
 
- const Protected = ({children, authentication=false}) => {
-    const [loader, setLoader] = useState(true)
-    const navigate = useNavigate()
-    const authStatus = useSelector(state => state.auth.isAuthenticated)
+const Protected = ({ children, authentication = false }) => {
+  const [checked, setChecked] = useState(false);
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const { isAuthenticated, status } = useSelector((state) => state.auth);
+
+  useEffect(() => {
     
-    useEffect(()=>{
-        if (authentication && authStatus !== authentication) {
-            navigate("/login")
-        }else if (!authentication && authStatus !== authentication) {
-            navigate("/")
-        }
-        setLoader(false)
-    },[])
+    // Wait until fetchUser() completes before any redirect
+    if (status === "idle" || status === "loading") return;
 
-  return loader ? <h1>Loading</h1> : <>{children}</>
-}
+    if (authentication && !isAuthenticated) {
+      navigate("/login", { replace: true });
+    } else if (!authentication && isAuthenticated) {
+      navigate("/", { replace: true });
+    } else {
+      setChecked(true);
+    }
+  }, [isAuthenticated, authentication, status, navigate, location.pathname]);
 
-export default Protected
+  if (!checked) return <h1>Loading...</h1>;
 
+  return <>{children}</>;
+};
+
+export default Protected;

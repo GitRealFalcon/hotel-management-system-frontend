@@ -20,15 +20,14 @@ api.interceptors.request.use((config)=>{
     return config
 })
 
-api.interceptors.request.use((res)=>res,(err)=>{
+api.interceptors.request.use((response)=>response,(error)=>{
     const navigate = useNavigate()
-    const status = err.response?.status;
+    const status = error.response?.status;
     if (status === 401) {
         localStorage.removeItem("token")
        navigate('/login')
     }
-
-    return Promise.reject(err)
+    return Promise.reject(error)
 })
 
 export default api

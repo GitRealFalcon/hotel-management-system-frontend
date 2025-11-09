@@ -12,6 +12,8 @@ import Home from './pages/Home.jsx';
 import Login from "./components/Login.jsx"
 import SinghUp from "./components/SinghUp.jsx"
 import Protected from './components/AuthLayout.jsx';
+import Profile from "./pages/Profile.jsx"
+import NewBooking from "./pages/NewBooking.jsx"
 
 const router = createBrowserRouter([
   {
@@ -41,10 +43,24 @@ const router = createBrowserRouter([
           <Protected authentication={false} >
             <SinghUp />
           </Protected>
-
-
         )
-      }
+      },
+      {
+        path:"/profile",
+        element:(
+          <Protected authentication={true} >
+            <Profile/>
+          </Protected>
+      )
+      },
+      {
+        path:"/new-booking/:roomno",
+        element:(
+          <Protected authentication={true} >
+            <NewBooking/>
+          </Protected>
+      )
+      },
     ]
   }
 ])

@@ -43,7 +43,7 @@ const dispatch = useDispatch()
     "5000 6000"
   ]
 
-  const handleSelect = (e) => {
+  const handleSelect = (e) => { 
     if (e.target.value === "All") {
        setRooms(data.filter((room) => room.isAvailable));
     } else {
@@ -89,6 +89,7 @@ const dispatch = useDispatch()
           image={room.image[0].secure_url}
           capecity={room.capacity}
           price={room.price}
+          roomNo={room.roomNo}
         />)}
 
       </div>
