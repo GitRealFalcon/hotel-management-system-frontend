@@ -7,6 +7,7 @@ import {loginUser} from '../features/auth/authThunks'
 import { toast } from 'react-toastify'
 import Logo from './Logo'
 
+
 const Login = () => {
   const { register, handleSubmit, formState: { errors } } = useForm()
   const { loading, error, isAuthenticated } = useSelector((state) => state.auth)
@@ -30,6 +31,8 @@ const Login = () => {
   // ✅ Handle login submission
   const onSubmit = (data) => {
     dispatch(loginUser(data))
+    
+
   }
 
   return (

@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useSelector} from "react-redux";
 import { useNavigate, useLocation } from "react-router-dom";
+
+
 
 const Protected = ({ children, authentication = false }) => {
   const [checked, setChecked] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
+ 
 
   const { isAuthenticated, status } = useSelector((state) => state.auth);
 
@@ -17,7 +20,9 @@ const Protected = ({ children, authentication = false }) => {
     if (authentication && !isAuthenticated) {
       navigate("/login", { replace: true });
     } else if (!authentication && isAuthenticated) {
+       
       navigate("/", { replace: true });
+      
     } else {
       setChecked(true);
     }

@@ -7,6 +7,8 @@ import MainHeadingbar from "../components/homeComponents/MainHeadingbar";
 import ImageCollage from "../components/homeComponents/ImageCollage";
 import RoomSection from "../components/homeComponents/RoomSection";
 import Map from "../components/homeComponents/map";
+import { useDispatch } from "react-redux";
+import { fetchUser } from "../features/auth/authThunks";
 
 const Home = () => {
   const [CheckInDate, setCheckInDate] = useState(dayjs().format("ddd, MMM DD YYYY"));
@@ -18,10 +20,13 @@ const Home = () => {
   const [activeField, setActiveField] = useState(null); // "checkin" or "checkout"
   const [bookingRoom, setBookingRoom] = useState(1)
   const [guest, setGuest] = useState(1)
-
   const calendarRef = useRef(null);
   const addRoomRef = useRef(null);
   const roomSectionRef = useRef(null)
+  const dispatch = useDispatch
+
+ 
+  
 
 
   // handle date selection from calendar

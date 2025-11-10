@@ -4,16 +4,20 @@ import Navbar from './components/navbar/Navbar'
 import Home from './pages/Home'
 import Footer from './components/footer/Footer'
 import { Outlet } from 'react-router-dom'
-import { useDispatch } from 'react-redux'
+import { useDispatch,useSelector } from 'react-redux'
 import { fetchUser } from "./features/auth/authThunks"
 import { useEffect } from 'react'
+import ScrollToTop from './components/ScrollToTop'
 
 function App() {
   const dispatch = useDispatch()
+  const { isAuthenticated } = useSelector((state) => state.auth);
 
   useEffect(() => {
-    dispatch(fetchUser())
-  }, [dispatch])
+    
+    dispatch(fetchUser());
+
+  }, [dispatch,isAuthenticated])
 
 
   return (
@@ -38,6 +42,7 @@ function App() {
 
       <Navbar />
       <main className="flex-grow">
+        <ScrollToTop/>
         <Outlet />
       </main>
       <Footer />

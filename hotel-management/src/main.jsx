@@ -14,18 +14,18 @@ import SinghUp from "./components/SinghUp.jsx"
 import Protected from './components/AuthLayout.jsx';
 import Profile from "./pages/Profile.jsx"
 import NewBooking from "./pages/NewBooking.jsx"
+import Custom404 from './pages/404.jsx';
 
 const router = createBrowserRouter([
-  {
+  { 
     path: "/",
     element: <App />,
     children: [
+      
       {
         path: "/",
         element: (
-          <Protected authentication={false} >
             <Home />
-          </Protected>
         )
       },
       {
@@ -45,6 +45,7 @@ const router = createBrowserRouter([
           </Protected>
         )
       },
+       
       {
         path:"/profile",
         element:(
@@ -61,6 +62,13 @@ const router = createBrowserRouter([
           </Protected>
       )
       },
+      {
+        path:"*",
+        element:(
+              <Custom404/>
+        )
+      },
+     
     ]
   }
 ])
@@ -68,12 +76,9 @@ const router = createBrowserRouter([
 createRoot(document.getElementById('root')).render(
 
   <Provider store={store}>
-
     <StyledEngineProvider injectFirst>
-
       <RouterProvider router={router} />
     </StyledEngineProvider>
-
   </Provider>
 
 )

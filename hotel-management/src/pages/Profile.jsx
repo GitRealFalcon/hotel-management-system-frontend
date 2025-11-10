@@ -1,16 +1,59 @@
-import React,{useState, useEffect} from 'react'
+import React, { useState, useEffect } from 'react'
 import Container from '../components/Container/Container'
 import { useSelector } from 'react-redux'
+import dayjs from 'dayjs'
+import BookingCard from '../components/BookingCard'
+import api from '../api/axios'
+import BookingDetails from '../components/profileComponents/BookingDetails'
+
 
 const Profile = () => {
-  const data = useSelector((state) => state.auth.user)
-const [user, setuser] = useState({})
+  const user = useSelector((state) => state.auth.user);
+  const [activeBooking, setActiveBooking] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [showBooking, setshowBooking] = useState(false)
+  const [booking, setBooking] = useState("")
+  
+  
+  useEffect(() => {
+  const fetchActiveBooking = async () => {
+    try {
+     
+      if (!user?.Bookings || user.Bookings.length === 0) return;
 
-useEffect(() => {
- setuser(data)
-}, [data])
+      const active = user.Bookings.filter(
+        (each) => each.status === "Active"
+      );
 
- 
+      if (active.length > 0) {
+        const res = await api.get("bookings/get-booking", {
+          params: { bookingId: active[0]._id },
+        });
+        setActiveBooking(res.data.data);
+      } else {
+        setActiveBooking(null);
+      }
+    } catch (error) {
+      console.error("Error fetching active booking:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  fetchActiveBooking();
+}, [user?.Bookings]);
+
+  const handleBookingClick = async(Id)=>{
+        const res = await api.get("bookings/get-booking", {
+          params: { bookingId: Id },
+        });
+        setBooking(res.data.data)
+        setshowBooking(true)
+  }
+
+  
+
+  if (loading) return <p>Loading Data...</p>;
 
   const formatter = new Intl.DateTimeFormat("en-IN", {
     timeZone: "Asia/Kolkata",
@@ -20,12 +63,63 @@ useEffect(() => {
   });
 
   return (
-    <div className=' w-full h-screen bg-cover  bg-[url("/4k-hotel.jpg")] pt-20'>
+    <div className=' w-full h-screen bg-cover  bg-[url("/4k-hotel.jpg")] flex items-center '>
+      <BookingDetails onClose={() => setshowBooking(false)} booking={booking} showBooking={showBooking} />
       <Container className={" flex "} >
-        {/* <div className='w-[10%] h-[80%] border rounded-2xl'>
-        <h2>Booking History</h2>
-      </div> */}
-        <div className='w-full h-[80%] flex  flex-col gap-10 rounded-2xl p-4'>
+
+        <div className='w-[40%] h-[80%] p-4 flex flex-col gap-4 rounded-2xl'>
+
+          <div className='bg-white h-40 rounded-2xl p-2'>
+            <div className='px-1'>
+              <h2 className='font-semibold mb-1'>Active Booking</h2>
+            </div>
+            <div  className='w-full border-b mb-2'></div>
+            <div className='flex flex-col gap-1'>
+              {activeBooking ? (
+                <div  onClick={()=>handleBookingClick(activeBooking._id)}>
+                <BookingCard
+                isPayed={activeBooking.payment.isPayed}
+                    bookingId={activeBooking._id}
+                  roomNo={activeBooking.roomNo}
+                  checkIn={activeBooking.checkIn}
+                  checkOut={activeBooking.checkOut}
+                  amount={activeBooking.totalAmount}
+                  active={activeBooking.status}
+                />
+                </div>
+              ) : (
+                <p>No active booking found.</p>
+              )}
+            </div>
+          </div>
+
+          <div className='bg-white h-[245px] rounded-2xl p-2'>
+            <div className='px-1'>
+              <h2 className='font-semibold mb-1'>Booking History</h2>
+            </div>
+            <div className='w-full border-b mb-2'></div>
+            <div className='flex flex-col h-[200px] pb-2 gap-1 overflow-y-scroll'>
+              {!user?.Bookings?.length ? (
+                <p>No bookings found.</p>
+              ) : (
+                user.Bookings.map((booking) => (
+                 <div  onClick={()=>handleBookingClick(booking._id)}
+                    key={booking._id}>
+                 <BookingCard
+                    roomNo={booking.roomNo}
+                    checkIn={booking.checkIn}
+                    checkOut={booking.checkOut}
+                    status={booking.status}
+                  />
+                   </div>
+                ))
+              )}
+            </div>
+          </div>
+
+        </div>
+
+        <div className='w-[60%] h-[80%] flex  flex-col gap-10 rounded-2xl p-4'>
           <div className='h-20 bg-white flex items-center p-2 gap-2 rounded-2xl'>
             <div className='w-15 h-15 rounded-full overflow-hidden  border'><img src="https://img.freepik.com/premium-vector/man-avatar-profile-picture-isolated-background-avatar-profile-picture-man_1293239-4855.jpg" alt="avatar" /></div>
             <div className='flex flex-col font-semibold'>
@@ -43,7 +137,7 @@ useEffect(() => {
 
             <div className='w-full h-[200px] flex items-center justify-between p-2 text-sm'>
               <div className='w-1/5 h-full flex flex-col justify-around  '>
-                <div>
+                <div >
                   <div className='text-gray-600'>Name</div>
                   <div className='font-semibold'>{user?.fullName}</div>
                 </div>
@@ -59,7 +153,7 @@ useEffect(() => {
                 </div>
                 <div>
                   <div className='text-gray-600'>Date of Birth</div>
-                  <div className='font-semibold'>{user?.dob ? formatter.format(new Date(user.dob))  : "N/A"}</div>
+                  <div className='font-semibold'>{user?.dob ? formatter.format(new Date(user.dob)) : "N/A"}</div>
                 </div>
               </div>
 
