@@ -3,15 +3,16 @@ import { Bar } from 'react-chartjs-2'
 import {
     Chart as ChartJS,
     CategoryScale,
-        LinearScale,
-        BarElement,
-        Title,
-        Tooltip,
-        Legend
+    LinearScale,
+    BarElement,
+    Title,
+    Tooltip,
+    Legend
 } from 'chart.js'
-
+import { useSelector } from 'react-redux'
 
 const BarChart = () => {
+    const { isDark } = useSelector((state) => state.theme)
 
     ChartJS.register(
         CategoryScale,
@@ -22,18 +23,28 @@ const BarChart = () => {
         Legend
     );
 
+    const textColor = isDark ? 'rgb(226 232 240)' : 'rgb(30 41 59)';
+
+    ChartJS.defaults.color = textColor;
+
     const options = {
         responsive: true,
         plugins: {
             legend: {
                 position: 'top',
+                labels: { color: textColor }
             },
             title: {
                 display: true,
-                text: 'Monthly Bookings and Cheked-In',
+                text: 'Monthly Bookings and Checked-In',
+                color: textColor
             },
         },
-    };
+        scales: {
+            x: { ticks: { color: textColor } },
+            y: { ticks: { color: textColor } }
+        }
+    }
 
     const labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July']
 
@@ -57,9 +68,7 @@ const BarChart = () => {
 
     return (
         <div>
-
-            <Bar options={options} data={data}/>
-
+            <Bar options={options} data={data} />
         </div>
     )
 }

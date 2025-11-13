@@ -1,5 +1,14 @@
 @import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
 
 .Toastify__toast-container {
   z-index: 9999 !important;
 }
+
+ :root{
+    --text-primary: #EBEBEB;
+    --text-secondry: #A3AED0;
+    --bg-primary: #0B1437;
+    --bg-secondry: #111C44;
+    --bg-third: #1f294f;
+  }

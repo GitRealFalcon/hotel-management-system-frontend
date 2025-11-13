@@ -10,8 +10,13 @@ import {
     Tooltip,
     Legend,
 } from 'chart.js'
+import { useSelector } from 'react-redux'
+
+
+
 
 const LineChart = () => {
+    const { isDark } = useSelector((state) => state.theme)
     ChartJS.register(
         CategoryScale,
         LinearScale,
@@ -21,19 +26,28 @@ const LineChart = () => {
         Tooltip,
         Legend
     );
+    const textColor = isDark ? 'rgb(226 232 240)' : 'rgb(30 41 59)';
+
+    ChartJS.defaults.color = textColor;
 
     const options = {
         responsive: true,
         plugins: {
             legend: {
                 position: 'top',
+                labels: { color: textColor }
             },
             title: {
                 display: true,
-                text: 'Chart.js Line Chart',
+                text: 'Monthly Bookings and Checked-In',
+                color: textColor
             },
         },
-    };
+        scales: {
+            x: { ticks: { color: textColor } },
+            y: { ticks: { color: textColor } }
+        }
+    }
 
     const labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
 
