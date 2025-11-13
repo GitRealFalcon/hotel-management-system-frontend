@@ -5,6 +5,7 @@ import dayjs from 'dayjs'
 import BookingCard from '../components/BookingCard'
 import api from '../api/axios'
 import BookingDetails from '../components/profileComponents/BookingDetails'
+import EditProfile from '../components/profileComponents/EditProfile'
 
 
 const Profile = () => {
@@ -13,6 +14,7 @@ const Profile = () => {
   const [loading, setLoading] = useState(true);
   const [showBooking, setshowBooking] = useState(false)
   const [booking, setBooking] = useState("")
+  const [showEdit, setshowEdit] = useState(false)
   
   
   useEffect(() => {
@@ -65,6 +67,7 @@ const Profile = () => {
   return (
     <div className=' w-full h-screen bg-cover  bg-[url("/4k-hotel.jpg")] flex items-center '>
       <BookingDetails onClose={() => setshowBooking(false)} booking={booking} showBooking={showBooking} />
+        <EditProfile onClose={()=> setshowEdit(false)} showEdit={showEdit} />
       <Container className={" flex "} >
 
         <div className='w-[40%] h-[80%] p-4 flex flex-col gap-4 rounded-2xl'>
@@ -130,7 +133,7 @@ const Profile = () => {
           <div className='bg-white h-[300px] rounded-2xl p-6'>
             <div className='flex justify-between h-10'>
               <h2 className='font-semibold'>Personal information</h2>
-              <div>Edit</div>
+              <div onClick={()=>setshowEdit(true)} className='font-semibold cursor-pointer hover:font-bold' >Edit</div>
             </div>
 
             <div className='w-full border-b'></div>

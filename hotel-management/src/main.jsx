@@ -15,17 +15,18 @@ import Protected from './components/AuthLayout.jsx';
 import Profile from "./pages/Profile.jsx"
 import NewBooking from "./pages/NewBooking.jsx"
 import Custom404 from './pages/404.jsx';
+import Dashboard from './pages/Dashboard.jsx';
 
 const router = createBrowserRouter([
-  { 
+  {
     path: "/",
     element: <App />,
     children: [
-      
+
       {
         path: "/",
         element: (
-            <Home />
+          <Home />
         )
       },
       {
@@ -45,32 +46,37 @@ const router = createBrowserRouter([
           </Protected>
         )
       },
-       
+
       {
-        path:"/profile",
-        element:(
+        path: "/profile",
+        element: (
           <Protected authentication={true} >
-            <Profile/>
+            <Profile />
           </Protected>
-      )
-      },
-      {
-        path:"/new-booking/:roomno",
-        element:(
-          <Protected authentication={true} >
-            <NewBooking/>
-          </Protected>
-      )
-      },
-      {
-        path:"*",
-        element:(
-              <Custom404/>
         )
       },
-     
+      {
+        path: "/new-booking/:roomno",
+        element: (
+          <Protected authentication={true} >
+            <NewBooking />
+          </Protected>
+        )
+      },
+
+      {
+        path: "*",
+        element: (
+          <Custom404 />
+        )
+      },
+
     ]
-  }
+  },
+  {
+    path: "admin-dashboard",
+    element: <Dashboard />
+  },
 ])
 
 createRoot(document.getElementById('root')).render(
