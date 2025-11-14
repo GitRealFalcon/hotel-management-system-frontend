@@ -28,7 +28,9 @@ const BarChart = () => {
     ChartJS.defaults.color = textColor;
 
     const options = {
-        responsive: true,
+         responsive: true,
+      maintainAspectRatio: false,
+      resizeDelay: 200,
         plugins: {
             legend: {
                 position: 'top',
@@ -67,9 +69,9 @@ const BarChart = () => {
     }
 
     return (
-        <div>
+        
             <Bar options={options} data={data} />
-        </div>
+       
     )
 }
 

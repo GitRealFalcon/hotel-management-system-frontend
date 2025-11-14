@@ -12,3 +12,12 @@
     --bg-secondry: #111C44;
     --bg-third: #1f294f;
   }
+
+  @theme{
+    --breakpoint-first: 1200px;
+    --breakpoint-second: 960px;
+    --breakpoint-third: 768px;
+    --breakpoint-forth: 576px;
+    --breakpoint-fifth: 420px;
+    --breakpoint-sixth: 320px;
+  }

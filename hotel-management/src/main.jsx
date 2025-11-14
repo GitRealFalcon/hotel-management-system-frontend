@@ -16,6 +16,9 @@ import Profile from "./pages/Profile.jsx"
 import NewBooking from "./pages/NewBooking.jsx"
 import Custom404 from './pages/404.jsx';
 import Dashboard from './pages/Dashboard.jsx';
+import MainDashboard from './pages/MainDashboard.jsx';
+import Customer from './pages/Customers.jsx';
+import Bookings from './pages/Bookings.jsx';
 
 const router = createBrowserRouter([
   {
@@ -74,8 +77,22 @@ const router = createBrowserRouter([
     ]
   },
   {
-    path: "admin-dashboard",
-    element: <Dashboard />
+    path: "/admin-dashboard",
+    element: <Dashboard />,
+    children:[
+      {
+        path: "/admin-dashboard",
+        element: <MainDashboard/>
+      },
+      {
+        path: "/admin-dashboard/customers",
+        element: <Customer/>
+      },
+      {
+        path: "/admin-dashboard/bookings",
+        element: <Bookings/>
+      },
+    ]
   },
 ])
 

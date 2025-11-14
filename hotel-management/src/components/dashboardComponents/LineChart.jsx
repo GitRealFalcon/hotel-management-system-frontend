@@ -13,8 +13,6 @@ import {
 import { useSelector } from 'react-redux'
 
 
-
-
 const LineChart = () => {
     const { isDark } = useSelector((state) => state.theme)
     ChartJS.register(
@@ -32,6 +30,8 @@ const LineChart = () => {
 
     const options = {
         responsive: true,
+         maintainAspectRatio: false,
+      resizeDelay: 200,
         plugins: {
             legend: {
                 position: 'top',
@@ -69,9 +69,9 @@ const LineChart = () => {
         ]
     }
     return (
-        <div>
+       
             <Line className='w-full h-full' options={options} data={data} />
-        </div>
+    
     )
 }
 
