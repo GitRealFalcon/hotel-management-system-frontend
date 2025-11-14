@@ -19,6 +19,8 @@ import Dashboard from './pages/Dashboard.jsx';
 import MainDashboard from './pages/MainDashboard.jsx';
 import Customer from './pages/Customers.jsx';
 import Bookings from './pages/Bookings.jsx';
+import Payments from './pages/Payments.jsx';
+import CheckIn from './pages/CheckIn.jsx';
 
 const router = createBrowserRouter([
   {
@@ -91,6 +93,14 @@ const router = createBrowserRouter([
       {
         path: "/admin-dashboard/bookings",
         element: <Bookings/>
+      },
+      {
+        path: "/admin-dashboard/payments",
+        element: <Payments/>
+      },
+      {
+        path: "/admin-dashboard/check-in",
+        element: <CheckIn/>
       },
     ]
   },

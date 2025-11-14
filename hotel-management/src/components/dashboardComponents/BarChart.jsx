@@ -11,7 +11,7 @@ import {
 } from 'chart.js'
 import { useSelector } from 'react-redux'
 
-const BarChart = () => {
+const BarChart = ({payed,pending}) => {
     const { isDark } = useSelector((state) => state.theme)
 
     ChartJS.register(
@@ -48,20 +48,20 @@ const BarChart = () => {
         }
     }
 
-    const labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July']
+    const labels = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul',"Aug","Sep","Oct","Nov","Dec"];
 
     const data = {
         labels,
         datasets: [
             {
-                label: "Booking",
-                data: ["40", "45", "10", "75", "42", "26", "77"],
+                label: "Payed",
+                data: payed,
                 borderColor: 'rgb(66 42 251)',
                 backgroundColor: 'rgb(66 42 251)',
             },
             {
-                label: "Checked-In",
-                data: ["55", "20", "47", "22", "67", "54", "32"],
+                label: "Pending",
+                data: pending,
                 borderColor: 'rgb(86 195 255)',
                 backgroundColor: 'rgb(86 195 255)',
             },

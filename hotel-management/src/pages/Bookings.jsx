@@ -60,27 +60,27 @@ const Bookings = () => {
     <div className="flex min-h-screen mt-4 flex-col gap-3">
       <div className='w-full h-15 dark:bg-[var(--bg-secondry)] bg-[#FFFFFF] rounded-2xl text-gray-500 sticky flex items-center justify-end gap-3 p-3 top-30'>
         <div className='flex gap-2 items-center'>
-          <label className='text-sm font-semibold' htmlFor="from">From</label>
-          <input onChange={(e) => setfrom(e.target.value)} id='from' className='font-semibold  dark:text-[var(--text-primary)] text-[#1A202C] bg-[#F4F7FE] dark:bg-[var(--bg-primary)] p-2 rounded-xl' type="date" />
+          <label className='text-sm cursor-pointer font-semibold' htmlFor="from">From</label>
+          <input onChange={(e) => setfrom(e.target.value)} id='from' className='font-semibold cursor-pointer  dark:text-[var(--text-primary)] text-[#1A202C] bg-[#F4F7FE] dark:bg-[var(--bg-primary)] p-2 rounded-xl' type="date" />
         </div>
         <div className='flex gap-2 items-center'>
-          <label className='text-sm font-semibold' htmlFor="to">To</label>
-          <input onChange={(e) => setTo(e.target.value)} id='to' className='font-semibold dark:text-[var(--text-primary)] text-[#1A202C] bg-[#F4F7FE] dark:bg-[var(--bg-primary)] p-2 rounded-xl' type="date" />
+          <label className='text-sm font-semibold cursor-pointer' htmlFor="to">To</label>
+          <input onChange={(e) => setTo(e.target.value)} id='to' className='font-semibold cursor-pointer dark:text-[var(--text-primary)] text-[#1A202C] bg-[#F4F7FE] dark:bg-[var(--bg-primary)] p-2 rounded-xl' type="date" />
         </div>
         <div className='flex gap-2 items-center'>
-          <label className='text-sm font-semibold' htmlFor="isChacked">isChecked</label>
-          <input checked={isChecked} onChange={() => setisChecked(!isChecked)} type="checkbox" />
+          <label className='text-sm font-semibold cursor-pointer' htmlFor="isChacked">isChecked</label>
+          <input id='isChacked' className='cursor-pointer accent-[#422AFB] w-4' checked={isChecked} onChange={() => setisChecked(!isChecked)} type="checkbox" />
         </div>
         <div className='flex gap-2 items-center'>
-          <label className='text-sm font-semibold' id='isPayed' htmlFor="isPayed">isPayed</label>
-          <input checked={isPayed} onChange={() => setisPayed(!isPayed)} id='isPayed' type="checkbox" />
+          <label className='text-sm font-semibold cursor-pointer'  htmlFor="isPayed">isPayed</label>
+          <input id='isPayed' className='cursor-pointer accent-[#422AFB] w-4' checked={isPayed} onChange={() => setisPayed(!isPayed)}  type="checkbox" />
         </div>
         <div>
-          <select onChange={(e) => setStatus(e.target.value)} className='bg-[#F4F7FE] dark:bg-[var(--bg-primary)] dark:text-[var(--text-primary)] text-[#1A202C] font-semibold p-2 rounded-xl' name="Status" id="status">
-            <option className='dark:text-[var(--text-primary)] text-[#1A202C] font-semibold' value="">Status</option>
-            <option className='dark:text-[var(--text-primary)] text-[#1A202C] font-semibold' value="Active">Active</option>
-            <option className='dark:text-[var(--text-primary)] text-[#1A202C] font-semibold' value="Cancelled">Cancelled</option>
-            <option className='dark:text-[var(--text-primary)] text-[#1A202C] font-semibold' value="Completed">Completed</option>
+          <select onChange={(e) => setStatus(e.target.value)} className='bg-[#F4F7FE] cursor-pointer dark:bg-[var(--bg-primary)] dark:text-[var(--text-primary)] text-[#1A202C] font-semibold p-2 rounded-xl' name="Status" id="status">
+            <option className='dark:text-[var(--text-primary)] cursor-pointer text-[#1A202C] font-semibold' value="">Status</option>
+            <option className='dark:text-[var(--text-primary)] cursor-pointer text-[#1A202C] font-semibold' value="Active">Active</option>
+            <option className='dark:text-[var(--text-primary)] cursor-pointer text-[#1A202C] font-semibold' value="Cancelled">Cancelled</option>
+            <option className='dark:text-[var(--text-primary)] cursor-pointer text-[#1A202C] font-semibold' value="Completed">Completed</option>
           </select>
         </div>
       </div>

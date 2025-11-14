@@ -1,6 +1,7 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { toggleSideBar } from '../../features/theme/themeSlice'
+import { Link } from 'react-router-dom'
 
 const DashboarSidebar = () => {
     const { isOpen } = useSelector((state) => state.theme)
@@ -13,27 +14,36 @@ const DashboarSidebar = () => {
                 <div className='w-full border-gray-300 border-b'></div>
             </div>
             <div className='flex flex-col justify-center dark:text-[var(--text-primary)] text-[#1A202C]  fifth:px-4 gap-2'>
-
+                <Link to={"/admin-dashboard"}>
                 <div className='flex gap-4  font-semibold p-2'>
                     <img width={20} height={20} src="/home.svg" alt="home" />
                     <p>Main Dashboard</p>
                 </div>
+                </Link>
+                <Link to={"/admin-dashboard/customers"}>
                 <div className='flex gap-4  font-semibold p-2'>
                     <img width={20} height={20} src="/person.svg" alt="person" />
                     <p>Customer</p>
                 </div>
+                </Link>
+                <Link to={"/admin-dashboard/bookings"}>
                 <div className='flex gap-4  font-semibold p-2'>
                     <img width={20} height={20} src="/bedroom.svg" alt="booking" />
                     <p>Booking</p>
                 </div>
+                </Link>
+                 <Link to={"/admin-dashboard/payments"}>
                 <div className='flex gap-4  font-semibold p-2'>
                     <img width={20} height={20} src="/currency_rupee.svg" alt="home" />
                     <p>Payment</p>
                 </div>
+                </Link>
+                <Link to={"/admin-dashboard/check-in"}>
                 <div className='flex gap-4  font-semibold p-2'>
                     <img width={20} height={20} src="/checkIn.svg" alt="home" />
                     <p>Check-In</p>
                 </div>
+                </Link>
             </div>
         </div>
     )

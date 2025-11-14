@@ -13,7 +13,7 @@ import {
 import { useSelector } from 'react-redux'
 
 
-const LineChart = () => {
+const LineChart = ({cancelled,completed}) => {
     const { isDark } = useSelector((state) => state.theme)
     ChartJS.register(
         CategoryScale,
@@ -49,20 +49,20 @@ const LineChart = () => {
         }
     }
 
-    const labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
+    const labels = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul',"Aug","Sep","Oct","Nov","Dec"];
 
     const data = {
         labels,
         datasets: [
             {
-                label: "Dataset 1",
-                data: ["40", "45", "10", "75", "42", "26", "77"],
+                label: "Cancelled",
+                data: cancelled,
                 borderColor: 'rgb(66 42 251)',
                 backgroundColor: 'rgb(66 42 251)',
             },
             {
-                label: "Dataset 2",
-                data: ["55", "20", "47", "22", "67", "54", "32"],
+                label: "Completed",
+                data: completed,
                 borderColor: 'rgb(86 195 255)',
                 backgroundColor: 'rgb(86 195 255)',
             },

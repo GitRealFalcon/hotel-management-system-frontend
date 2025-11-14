@@ -2,9 +2,30 @@ import React from 'react'
 import { useState } from 'react'
 import Button from '../Button'
 import dayjs from 'dayjs'
- 
-const BookingComponent = ({booking}) => {
-const [show, setShow] = useState(false)
+import api from '../../api/axios'
+import { useDispatch } from 'react-redux'
+import { setBooking } from '../../features/booking/bookingSlice'
+import { toast } from 'react-toastify'
+
+const CheckInComponent = ({booking}) => {
+    const [show, setShow] = useState(false)
+
+    const handleCheckedIn = async()=>{
+        const data = {
+            bookingId:booking._id
+        }
+        try {
+            await api.patch("bookings/checkin",data)
+            const res = await api.get("bookings/get-bookings")
+            const resData = res.data.data
+            useDispatch(setBooking(resData))
+            toast.success("Checked-In Successfully")
+        } catch (error) {
+            console.log(error);
+            
+        }
+    }
+
   return (
     <div>
        <div
@@ -19,11 +40,17 @@ const [show, setShow] = useState(false)
                     </div>
                 </div>
                 <div>
-                    <div className="text-sm text-gray-400">Status</div>
+                    <div className="text-sm text-gray-400">Name</div>
                     <div className="dark:text-[var(--text-primary)] overflow-clip text-[#1A202C]">
-                      {booking?.status ? booking.status : "N/A"}
+                      {booking?.customerDetails[0].fullName ? booking?.customerDetails[0].fullName : "N/A"}
                     </div>
                 </div>
+                 <div>
+                        <div className="text-sm text-gray-400 ">Email</div>
+                        <div className="dark:text-[var(--text-primary)] overflow-clip text-[#1A202C]">
+                           {booking?.customerDetails[0].email ?booking.customerDetails[0].email: "N/A"}
+                        </div>
+                    </div>
 
                 <div>
                     <div className="text-sm text-gray-400">Check-In</div>
@@ -31,28 +58,23 @@ const [show, setShow] = useState(false)
                         {booking?.checkIn ? dayjs(booking.checkIn).format("DD/MM/YYYY") : "N/A"}
                     </div>
                 </div>
-                <div>
-                    <div className="text-sm text-gray-400 overflow-clip">Check-Out</div>
-                    <div className="dark:text-[var(--text-primary)] overflow-clip text-[#1A202C]">
-                       {booking?.checkOut ? dayjs(booking.checkOut).format("DD/MM/YYYY") : "N/A"}
-                    </div>
-                </div>
+                
             </div>
 
             <div className={`transition-all duration-300 overflow-hidden 
                ${show ? "max-h-40 opacity-100" : "max-h-0 opacity-0"}`} >
 
                 <div className="grid grid-cols-4 gap-3 grid-rows-1 font-semibold">
-                    <div>
-                        <div className="text-sm text-gray-400 ">isChecked-In</div>
-                        <div className="dark:text-[var(--text-primary)] overflow-clip text-[#1A202C]">
-                           {booking?.isChekedIn ?"Checked": "No Checked"}
-                        </div>
+                   <div>
+                    <div className="text-sm text-gray-400 overflow-clip">Check-Out</div>
+                    <div className="dark:text-[var(--text-primary)] overflow-clip text-[#1A202C]">
+                       {booking?.checkOut ? dayjs(booking.checkOut).format("DD/MM/YYYY") : "N/A"}
                     </div>
+                </div>
                     <div>
                         <div className="text-sm text-gray-400">isPayed</div>
                         <div className="dark:text-[var(--text-primary)] overflow-clip text-[#1A202C]">
-                           {booking?.payment.isPayed ? "Payed" : "Unpayed"}
+                           {booking?.payment?.isPayed ? "Payed" : "Unpayed"}
                         </div>
                     </div>
                     <div>
@@ -64,20 +86,13 @@ const [show, setShow] = useState(false)
                     <div>
                         <div className="text-sm text-gray-400 ">UTR</div>
                         <div className="dark:text-[var(--text-primary)] overflow-clip text-[#1A202C]">
-                            {booking?.payment.paymentId ? booking.payment.paymentId : "N/A"}
+                            {booking?.payment?.paymentId ? booking.payment.paymentId : "N/A"}
                         </div>
                     </div>
                 </div>
 
                 <div className="grid grid-cols-4 grid-rows-1 gap-3 font-semibold mt-4">
-                    <div>
-                        <div className="text-sm text-gray-400 ">
-                           UserId
-                        </div>
-                        <div className="dark:text-[var(--text-primary)] overflow-clip text-[#1A202C]">
-                           {booking?.customer ? booking.customer : "N/A"}
-                        </div>
-                    </div>
+                   
                     <div>
                         <div className="text-sm text-gray-400 ">
                             Days
@@ -86,7 +101,7 @@ const [show, setShow] = useState(false)
                            {booking?.totalDays ? booking.totalDays : "N/A"}
                         </div>
                     </div>
-                    <Button children={"User Detail"} className="w-fit col-end-5" />
+                    <Button onClick={handleCheckedIn} children={"Check-In"} className="w-fit col-end-5" />
                 </div>
             </div>
         </div>
@@ -94,4 +109,4 @@ const [show, setShow] = useState(false)
   )
 }
 
-export default BookingComponent
+export default CheckInComponent
