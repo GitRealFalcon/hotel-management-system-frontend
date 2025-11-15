@@ -32,13 +32,13 @@ const MainHeadingbar = ({scrollRef,CheckInDate,CheckOutDate,guest}) => {
       <div className='h-[90%] border-x border-gray-400'></div>
       <div className='heading w-[50%] h-[90%] flex flex-col justify-around'>
             <div className='text-red-700 w-fit border-2 font-semibold border-red-700 rounded-md px-1'>HOTEL SELLING FAST</div>
-            <h1 className='text-3xl font-bold font-serif'>
+            <h1 className='text-3xl font-bold font-serif dark:text-[var(--text-primary)] text-[#1A202C]'>
                 Falcon Plaza Hotel & Event Center
             </h1>
       </div>
       <div className='offerCheckout h-[90%] w-[20%]  flex flex-col justify-between py-1'>
         <div className='font-mono flex items-center gap-0.5'>
-            <p className='font-bold text-2xl'>₹2500</p><p className='text-sm text-gray-500'>INR/night</p>
+            <p className='dark:text-[var(--text-primary)]  text-[#1A202C] font-bold text-2xl'>₹2500</p><p className='text-sm text-gray-500 dark:text-gray-400'>INR/night</p>
         </div>
         <Button onClick={findRooms} children={"View Rooms"} className='bg-gradient-to-tl h-fit from-gray-300 to-gray-950 text-white font-semibold w-fit'/>
       </div>

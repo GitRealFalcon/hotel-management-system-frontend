@@ -54,6 +54,10 @@ const authSlice = createSlice({
         state.user = action.payload;
         state.isAuthenticated = true;
          state.status = "succeeded";
+        if (action.payload.isAdmin) {
+         state.isAdmin = true 
+        }
+        
       })
       .addCase(fetchUser.rejected, (state, action) => {
         state.loading = false;

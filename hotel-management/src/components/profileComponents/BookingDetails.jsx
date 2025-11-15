@@ -51,69 +51,69 @@ const BookingDetails = ({ booking, showBooking, onClose }) => {
 
     return (
         <div className={` h-screen w-full backdrop-blur-sm bg-opacity-0 from-gray-400 flex items-center justify-center absolute`}>
-            <div className=' h-[60%] w-[60%] bg-white flex flex-col justify-around p-6 rounded-xl border border-slate-300'>
+            <div className=' h-[60%] w-[60%] dark:bg-[var(--bg-secondry)] bg-[#FFFFFF] flex flex-col justify-around p-6 rounded-xl dark:border-none border border-slate-300'>
                 <div className='flex justify-between h-10'>
-                    <h2 className='font-semibold'>Booking information</h2>
-                    <div onClick={onClose} className='font-semibold cursor-pointer hover:font-bold'>Close</div>
+                    <h2 className='font-semibold dark:text-[var(--text-primary)] text-[#1A202C]'>Booking information</h2>
+                    <div onClick={onClose} className='dark:text-[var(--text-primary)] text-[#1A202C] font-semibold cursor-pointer hover:font-bold'>Close</div>
                 </div>
 
-                <div className='w-full border-b'></div>
+                <div className='w-full border-gray-300 border-b'></div>
 
                 <div className='w-full  flex  justify-between p-2 py-5 text-sm'>
                     <div className='w-1/5 flex flex-col gap-10  '>
                         <div >
-                            <div className='text-gray-600'>Name</div>
-                            <div className='font-semibold'>{user?.fullName ? user.fullName : "N/A"}</div>
+                            <div className='text-gray-400'>Name</div>
+                            <div className='font-semibold dark:text-[var(--text-primary)] text-[#1A202C]'>{user?.fullName ? user.fullName : "N/A"}</div>
                         </div>
                         <div>
-                            <div className='text-gray-600'>Email</div>
-                            <div className='font-semibold'>{user?.email ? user.email : "N/A"}</div>
+                            <div className='text-gray-400'>Email</div>
+                            <div className='font-semibold dark:text-[var(--text-primary)] text-[#1A202C]'>{user?.email ? user.email : "N/A"}</div>
                         </div>
                         <div>
-                            <div className='text-gray-600'>Status</div>
-                            <div className='font-semibold'>{status ? status : "N/A"}</div>
+                            <div className='text-gray-400'>Status</div>
+                            <div className='font-semibold dark:text-[var(--text-primary)] text-[#1A202C]'>{status ? status : "N/A"}</div>
                         </div>
 
                     </div>
                     <div className='w-1/5  flex flex-col gap-10'>
                         <div>
-                            <div className='text-gray-600'>Phone Number</div>
-                            <div className='font-semibold'>{user?.phone ? user.phone : "N/A"}</div>
+                            <div className='text-gray-400'>Phone Number</div>
+                            <div className='font-semibold dark:text-[var(--text-primary)] text-[#1A202C]'>{user?.phone ? user.phone : "N/A"}</div>
                         </div>
                         <div>
-                            <div className='text-gray-600'>Room No</div>
-                            <div className='font-semibold'>{booking?.roomNo ? booking.roomNo : "N/A"}</div>
+                            <div className='text-gray-400'>Room No</div>
+                            <div className='font-semibold dark:text-[var(--text-primary)] text-[#1A202C]'>{booking?.roomNo ? booking.roomNo : "N/A"}</div>
                         </div>
                         <div>
-                            <div className='text-gray-600'>CheckIn</div>
-                            <div className='font-semibold'>{isChekedIn ? "yes" : "No"}</div>
+                            <div className='text-gray-400'>CheckIn</div>
+                            <div className='font-semibold dark:text-[var(--text-primary)] text-[#1A202C]'>{isChekedIn ? "yes" : "No"}</div>
                         </div>
 
                     </div>
 
                     <div className='w-1/5  flex flex-col gap-10'>
                         <div>
-                            <div className='text-gray-600'>Check-In</div>
-                            <div className='font-semibold'>{booking?.checkIn ? dayjs(booking.checkIn).format("DD/MM/YYYY") : "N/A"}</div>
+                            <div className='text-gray-400'>Check-In</div>
+                            <div className='font-semibold dark:text-[var(--text-primary)] text-[#1A202C]'>{booking?.checkIn ? dayjs(booking.checkIn).format("DD/MM/YYYY") : "N/A"}</div>
                         </div>
                         <div>
-                            <div className='text-gray-600'>Days</div>
-                            <div className='font-semibold'>{booking?.totalDays ? booking.totalDays : "N/A"}</div>
+                            <div className='text-gray-400'>Days</div>
+                            <div className='font-semibold dark:text-[var(--text-primary)] text-[#1A202C]'>{booking?.totalDays ? booking.totalDays : "N/A"}</div>
                         </div>
                         {isPayed && <div>
-                            <div className='text-gray-600'>UTR</div>
-                            <div className='font-semibold'>{isPayed && booking.payment.paymentId}</div>
+                            <div className='text-gray-400'>UTR</div>
+                            <div className='font-semibold dark:text-[var(--text-primary)] text-[#1A202C]'>{isPayed && booking.payment.paymentId}</div>
                         </div>}
                     </div>
 
                     <div className='w-1/5 flex flex-col gap-10'>
                         <div>
-                            <div className='text-gray-600'>Check-Out</div>
-                            <div className='font-semibold'>{booking?.checkOut ? dayjs(booking.checkOut).format("DD/MM/YYYY") : "N/A"}</div>
+                            <div className='text-gray-400'>Check-Out</div>
+                            <div className='font-semibold dark:text-[var(--text-primary)] text-[#1A202C]'>{booking?.checkOut ? dayjs(booking.checkOut).format("DD/MM/YYYY") : "N/A"}</div>
                         </div>
                         <div>
-                            <div className='text-gray-600'>Amount</div>
-                            <div className='font-semibold'>{booking?.totalAmount ? booking.totalAmount : "N/A"}</div>
+                            <div className='text-gray-400'>Amount</div>
+                            <div className='font-semibold dark:text-[var(--text-primary)] text-[#1A202C]'>{booking?.totalAmount ? booking.totalAmount : "N/A"}</div>
                         </div>
                     </div>
 

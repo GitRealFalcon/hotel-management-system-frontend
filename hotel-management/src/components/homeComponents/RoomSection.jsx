@@ -73,12 +73,12 @@ const dispatch = useDispatch()
 
       <div className='flex flex-col gap-2'>
         <span className='text-orange-700 font-semibold'>Guest Rooms</span>
-        <h1 className='text-3xl font-bold font-serif'>Available Guest Rooms</h1>
+        <h1 className='text-3xl font-bold font-serif dark:text-[var(--text-primary)] overflow-clip text-[#1A202C]'>Available Guest Rooms</h1>
       </div>
 
       <div className='flex gap-2 '>
         <Select ref={selectRef} onChange={handleSelect} options={options} />
-        {capFilter.map((item) => <div key={item.capacity} onClick={() => filterByCapecity(item.capacity)} className='cursor-pointer p-2 text-center border rounded-lg '>{item.capacity + " Guest"}</div>)}
+        {capFilter.map((item) => <div key={item.capacity} onClick={() => filterByCapecity(item.capacity)} className='cursor-pointer dark:text-[var(--text-primary)] overflow-clip text-[#1A202C] p-2 text-center border rounded-lg '>{item.capacity + " Guest"}</div>)}
       </div>
 
       <div className='grid grid-cols-3 gap-3'>

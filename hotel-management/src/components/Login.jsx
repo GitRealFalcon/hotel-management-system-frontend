@@ -41,11 +41,11 @@ const Login = () => {
     <div className="flex flex-col items-center justify-center min-h-screen p-6 ">
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="w-full flex flex-col gap-2 max-w-md p-6 bg-white shadow-md rounded-lg"
+        className="w-full flex flex-col gap-2 max-w-md p-6 dark:bg-[var(--bg-secondry)] dark:border-none bg-[#FFFFFF] border border-gray-300 shadow-md rounded-lg"
       >
         <div className=" self-center"><Logo height={80} width={80} /></div>
 
-        <div className="text-sm text-center mb-6">
+        <div className="text-sm text-center dark:text-[var(--text-primary)] text-[#1A202C] mb-6">
           Don&apos;t have an account?&nbsp;
           <Link
             to="/signup"
@@ -60,6 +60,7 @@ const Login = () => {
           type="email"
           label="Email :"
           placeholder="Enter your email"
+          className="font-semibold dark:text-[var(--text-primary)] text-[#1A202C] bg-[#F4F7FE] dark:bg-[var(--bg-primary)]"
           {...register('email', {
             required: 'Email is required',
             validate: {
@@ -78,6 +79,7 @@ const Login = () => {
           type="password"
           label="Password :"
           placeholder="Enter your password"
+          className="font-semibold dark:text-[var(--text-primary)] text-[#1A202C] bg-[#F4F7FE] dark:bg-[var(--bg-primary)]"
           {...register('password', {
             required: 'Password is required',
             minLength: {

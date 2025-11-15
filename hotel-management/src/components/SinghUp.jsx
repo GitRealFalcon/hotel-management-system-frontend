@@ -40,11 +40,11 @@ const Signup = () => {
     <div className="flex flex-col items-center justify-center min-h-screen  p-6">
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="w-full max-w-md p-6 flex flex-col gap-2 bg-white shadow-md rounded-lg"
+        className="w-full max-w-md p-6 flex flex-col gap-2 dark:bg-[var(--bg-secondry)] dark:border-none bg-[#FFFFFF] border border-gray-300  shadow-md rounded-lg"
       >
-        <h2 className="text-2xl font-bold text-center mb-4">Create an Account</h2>
+        <h2 className="text-2xl font-bold dark:text-[var(--text-primary)] text-[#1A202C] text-center mb-4">Create an Account</h2>
 
-        <div className="text-sm text-center mb-6">
+        <div className="text-sm text-center dark:text-[var(--text-primary)] text-[#1A202C] mb-6">
           Already have an account?&nbsp;
           <Link
             to="/login"
@@ -59,6 +59,7 @@ const Signup = () => {
           type="text"
           label="Full Name :"
           placeholder="Enter your full name"
+          className="font-semibold dark:text-[var(--text-primary)] text-[#1A202C] bg-[#F4F7FE] dark:bg-[var(--bg-primary)]"
           {...register('fullName', {
             required: 'Full name is required',
             minLength: { value: 3, message: 'Name must be at least 3 characters' },
@@ -73,6 +74,7 @@ const Signup = () => {
           type="email"
           label="Email :"
           placeholder="Enter your email"
+          className="font-semibold dark:text-[var(--text-primary)] text-[#1A202C] bg-[#F4F7FE] dark:bg-[var(--bg-primary)]"
           {...register('email', {
             required: 'Email is required',
             validate: {
@@ -91,6 +93,7 @@ const Signup = () => {
           type="password"
           label="Password :"
           placeholder="Enter your password"
+          className="font-semibold dark:text-[var(--text-primary)] text-[#1A202C] bg-[#F4F7FE] dark:bg-[var(--bg-primary)]"
           {...register('password', {
             required: 'Password is required',
             minLength: {
@@ -114,6 +117,7 @@ const Signup = () => {
           type="password"
           label="Confirm Password :"
           placeholder="Confirm your password"
+          className="font-semibold dark:text-[var(--text-primary)] text-[#1A202C] bg-[#F4F7FE] dark:bg-[var(--bg-primary)]"
           {...register('confirmPassword', {
             required: 'Please confirm your password',
             validate: (value, formValues) =>

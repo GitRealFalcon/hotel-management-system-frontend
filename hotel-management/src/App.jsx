@@ -21,11 +21,7 @@ function App() {
 
 
   return (
-    <div className="flex flex-col min-h-screen overflow-x-hidden relative">
-
-      <div className="absolute inset-0 -z-10 bg-[radial-gradient(60%_120%_at_50%_50%,rgba(252,205,238,0.5)_0%,white_100%)]"></div>
-
-
+    <div className="flex flex-col min-h-screen overflow-x-hidden relative bg-[#F4F7FE] dark:bg-[var(--bg-primary)]">
       <ToastContainer
         position="top-right"
         autoClose={3000}
@@ -41,7 +37,7 @@ function App() {
 
 
       <Navbar />
-      <main className="flex-grow">
+      <main className="grow">
         <ScrollToTop/>
         <Outlet />
       </main>

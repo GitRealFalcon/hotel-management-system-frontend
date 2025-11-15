@@ -101,59 +101,59 @@ const NewBooking = () => {
     return (
         <div className=' w-full h-screen bg-cover  bg-[url("/4k-hotel.jpg")] flex items-center '>
             <Container className={"flex justify-center"}>
-                <div className='bg-white rounded-xl p-4 justify-around w-[60%] items-center border flex'>
-                    <div className='w-[60%] p-2 bg-gradient-to-br rounded-xl from-gray-200 to-gray-100 backdrop-blur-md backdrop-filter bg-opacity-0'>
+                <div className='bg-[#F4F7FE] dark:bg-[var(--bg-primary)] dark:border-none rounded-xl p-4 justify-around w-[60%] items-center border flex'>
+                    <div className='w-[60%] p-2  rounded-xl dark:bg-[var(--bg-secondry)] bg-[#FFFFFF]'>
                         <form onSubmit={handleSubmit}>
                             <div className=' flex flex-col gap-2 p-2'>
-                                <h1 className='font-semibold'>Booking Details</h1>
+                                <h1 className='font-semibold dark:text-[var(--text-primary)] text-[#1A202C]'>Booking Details</h1>
                                 <div className='flex w-full'>
 
                                     <div className='flex flex-col w-1/2 text-sm gap-2 px-2'>
                                         <div className='flex flex-col gap-1 '>
-                                            <div className='text-gray-700'>Check-In</div>
-                                            <div onClick={() => { setcalShow(!calShow); setisActive("checkIn") }} className='font-semibold cursor-pointer bg-gray-300 p-2 w-full rounded-lg'>{checkIn}</div>
+                                            <div className='text-gray-400 font-semibold'>Check-In</div>
+                                            <div onClick={() => { setcalShow(!calShow); setisActive("checkIn") }} className='font-semibold cursor-pointer bg-[#F4F7FE] dark:bg-[var(--bg-primary)] dark:text-[var(--text-primary)] text-[#1A202C] p-2 w-full rounded-lg'>{checkIn}</div>
                                         </div>
                                         <div className='flex flex-col gap-1 '>
-                                            <div className='text-gray-700'>No. of Guests</div>
-                                            <Select className="font-semibold cursor-pointer bg-gray-300 p-2 w-full rounded-lg" options={options} />
+                                            <div className='text-gray-400 font-semibold'>No. of Guests</div>
+                                            <Select className="font-semibold cursor-pointer bg-[#F4F7FE] dark:bg-[var(--bg-primary)] dark:text-[var(--text-primary)] text-[#1A202C] p-2 w-full rounded-lg" options={options} />
                                         </div>
                                     </div>
 
                                     <div className='flex flex-col text-sm w-1/2 gap-2 px-2'>
                                         <div className='flex flex-col gap-1 '>
-                                            <div className='text-gray-700'>Check-out</div>
-                                            <div onClick={() => { setcalShow(!calShow); setisActive("checkOut") }} className='font-semibold cursor-pointer bg-gray-300 p-2 w-full rounded-lg'>{checkOut}</div>
+                                            <div className='text-gray-400 font-semibold'>Check-out</div>
+                                            <div onClick={() => { setcalShow(!calShow); setisActive("checkOut") }} className='font-semibold cursor-pointer bg-[#F4F7FE] dark:bg-[var(--bg-primary)] dark:text-[var(--text-primary)] text-[#1A202C] p-2 w-full rounded-lg'>{checkOut}</div>
                                         </div>
                                         <div className='flex flex-col gap-1 '>
-                                            <div className='text-gray-700'>Room</div>
-                                            <div className='font-semibold bg-gray-300 p-2 w-full rounded-lg'>{room.type}</div>
+                                            <div className='text-gray-400 font-semibold'>Room</div>
+                                            <div className='font-semibold bg-[#F4F7FE] dark:bg-[var(--bg-primary)] dark:text-[var(--text-primary)] text-[#1A202C] p-2 w-full rounded-lg'>{room.type}</div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
 
                             <div className=' flex flex-col gap-2 p-2'>
-                                <h2 className='font-semibold'>Contact Details</h2>
+                                <h2 className='font-semibold dark:text-[var(--text-primary)] text-[#1A202C]'>Contact Details</h2>
                                 <div className='flex w-full pb-3'>
                                     <div className='flex flex-col text-sm w-1/2 gap-2 px-2'>
                                         <div className='flex flex-col gap-1 '>
-                                            <div className='text-gray-700'>First Name</div>
-                                            <div className='font-semibold bg-gray-300 p-2 w-full rounded-lg'>{first ? first : "N/A"}</div>
+                                            <div className='text-gray-400 font-semibold'>First Name</div>
+                                            <div className='font-semibold bg-[#F4F7FE] dark:bg-[var(--bg-primary)] dark:text-[var(--text-primary)] text-[#1A202C] p-2 w-full rounded-lg'>{first ? first : "N/A"}</div>
                                         </div>
                                         <div className='flex flex-col gap-1 '>
-                                            <div className='text-gray-700'>Phone Number</div>
-                                            <div className='font-semibold bg-gray-300 p-2 w-full rounded-lg'>{user.phone ? user.phone : "N/A"}</div>
+                                            <div className='text-gray-400 font-semibold'>Phone Number</div>
+                                            <div className='font-semibold bg-[#F4F7FE] dark:bg-[var(--bg-primary)] dark:text-[var(--text-primary)] text-[#1A202C] p-2 w-full rounded-lg'>{user.phone ? user.phone : "N/A"}</div>
                                         </div>
                                     </div>
 
                                     <div className='flex flex-col text-sm w-1/2 gap-2 px-2'>
                                         <div className='flex flex-col gap-1 '>
-                                            <div className='text-gray-700'>Last Name</div>
-                                            <div className='font-semibold bg-gray-300 p-2 w-full rounded-lg'>{last ? last : "N/A"}</div>
+                                            <div className='text-gray-400 font-semibold'>Last Name</div>
+                                            <div className='font-semibold bg-[#F4F7FE] dark:bg-[var(--bg-primary)] dark:text-[var(--text-primary)] text-[#1A202C] p-2 w-full rounded-lg'>{last ? last : "N/A"}</div>
                                         </div>
                                         <div className='flex flex-col gap-1 '>
-                                            <div className='text-gray-700'>Email</div>
-                                            <div className='font-semibold bg-gray-300 p-2 w-full rounded-lg'>{user.email ? user.email : "N/A"}</div>
+                                            <div className='text-gray-400 font-semibold'>Email</div>
+                                            <div className='font-semibold bg-[#F4F7FE] dark:bg-[var(--bg-primary)] dark:text-[var(--text-primary)] text-[#1A202C] p-2 w-full rounded-lg'>{user.email ? user.email : "N/A"}</div>
                                         </div>
                                     </div>
                                 </div>

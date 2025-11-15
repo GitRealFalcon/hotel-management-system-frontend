@@ -48,17 +48,17 @@ const EditProfile = ({ onClose, showEdit }) => {
   if (!showEdit) return null;
   return (
     <div className={` h-screen w-full backdrop-blur-sm bg-opacity-0 from-gray-400 flex items-center justify-center absolute`}>
-      <div className=' h-[60%] w-[60%] bg-white flex flex-col justify-around p-6 rounded-xl border border-slate-300'>
+      <div className=' h-[60%] w-[60%] dark:bg-[var(--bg-secondry)] bg-[#FFFFFF] dark:border-none flex flex-col justify-around p-6 rounded-xl border border-slate-300'>
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className='flex justify-between h-10'>
-            <h2 className='font-semibold'>Update Profile</h2>
-            <div onClick={onClose} className='font-semibold cursor-pointer hover:font-bold'>Close</div>
+            <h2 className='font-semibold dark:text-[var(--text-primary)] text-[#1A202C]'>Update Profile</h2>
+            <div onClick={onClose} className='dark:text-[var(--text-primary)] text-[#1A202C] font-semibold cursor-pointer hover:font-bold'>Close</div>
           </div>
-          <div className='w-full border-b'></div>
+          <div className='w-full border-gray-400 border-b'></div>
           <div className='w-full  flex flex-col gap-5 p-2 py-5 text-sm'>
             <div className='flex gap-5'>
               <div>
-                <Input label="Full Name" className="font-semibold"
+                <Input label="Full Name" className="font-semibold dark:text-[var(--text-primary)] text-[#1A202C] bg-[#F4F7FE] dark:bg-[var(--bg-primary)]"
                   {...register("fullName", {
                     required: "Full Name is Required",
                     minLength: { value: 3, message: "'Name must be at least 3 characters'" }
@@ -70,7 +70,7 @@ const EditProfile = ({ onClose, showEdit }) => {
               </div>
 
               <div>
-                <Input type="tel" label="Phone Number" className="font-semibold"
+                <Input type="tel" label="Phone Number" className="font-semibold dark:text-[var(--text-primary)] text-[#1A202C] bg-[#F4F7FE] dark:bg-[var(--bg-primary)]"
                   {...register("phone", {
                     pattern: {
                       value: /^[0-9]{10}$/,
@@ -83,7 +83,7 @@ const EditProfile = ({ onClose, showEdit }) => {
                   <p className="text-red-500 text-sm mt-1">{errors.phone.message}</p>
                 )}
               </div>
-              <Input label="Date of Birth" type="date" className="font-semibold"
+              <Input label="Date of Birth" type="date" className="font-semibold dark:text-[var(--text-primary)] text-[#1A202C] bg-[#F4F7FE] dark:bg-[var(--bg-primary)]"
                 {...register("dob", {
                   validate: (value) => {
                     const today = new Date().toISOString().split("T")[0];
@@ -93,18 +93,18 @@ const EditProfile = ({ onClose, showEdit }) => {
               />
             </div>
             <div>
-              <Input label="Address" className="font-semibold"
+              <Input label="Address" className="font-semibold dark:text-[var(--text-primary)] text-[#1A202C] bg-[#F4F7FE] dark:bg-[var(--bg-primary)]"
                 {...register("address")}
               />
             </div>
             <div className='flex gap-5'>
-              <Input label="City" className="font-semibold"
+              <Input label="City" className="font-semibold dark:text-[var(--text-primary)] text-[#1A202C] bg-[#F4F7FE] dark:bg-[var(--bg-primary)]"
                 {...register("city")}
               />
-              <Input label="State" className="font-semibold"
+              <Input label="State" className="font-semibold dark:text-[var(--text-primary)] text-[#1A202C] bg-[#F4F7FE] dark:bg-[var(--bg-primary)]"
                 {...register("state")}
               />
-              <Input label="Postal Code" className="font-semibold"
+              <Input label="Postal Code" className="font-semibold dark:text-[var(--text-primary)] text-[#1A202C] bg-[#F4F7FE] dark:bg-[var(--bg-primary)]"
                 {...register("pincode", {
                   pattern: {
                     value: /^[0-9]{6}$/,

@@ -20,6 +20,7 @@ const Protected = ({ children, authentication = false, adminOnly= false }) => {
       
     } 
 
+    
     if (adminOnly && !isAdmin) {
        navigate("/not-authorized", { replace: true });
       return;
