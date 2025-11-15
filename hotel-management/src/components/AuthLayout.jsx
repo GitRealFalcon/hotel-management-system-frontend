@@ -3,18 +3,13 @@ import { useSelector} from "react-redux";
 import { useNavigate, useLocation } from "react-router-dom";
 
 
-
-const Protected = ({ children, authentication = false }) => {
+const Protected = ({ children, authentication = false, adminOnly= false }) => {
   const [checked, setChecked] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
- 
-
-  const { isAuthenticated, status } = useSelector((state) => state.auth);
+  const { isAuthenticated, status ,isAdmin } = useSelector((state) => state.auth);
 
   useEffect(() => {
-    
-    // Wait until fetchUser() completes before any redirect
     if (status === "idle" || status === "loading") return;
 
     if (authentication && !isAuthenticated) {
@@ -23,9 +18,14 @@ const Protected = ({ children, authentication = false }) => {
        
       navigate("/", { replace: true });
       
-    } else {
-      setChecked(true);
+    } 
+
+    if (adminOnly && !isAdmin) {
+       navigate("/not-authorized", { replace: true });
+      return;
     }
+      setChecked(true);
+    
   }, [isAuthenticated, authentication, status, navigate, location.pathname]);
 
   if (!checked) return <h1>Loading...</h1>;

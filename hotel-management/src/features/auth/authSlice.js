@@ -7,6 +7,7 @@ const initialState = {
   error: null,
   isAuthenticated: false,
    status: "idle",
+   isAdmin:false
 };
 
 const authSlice = createSlice({
@@ -17,6 +18,7 @@ const authSlice = createSlice({
       state.user = null;
       state.isAuthenticated = false;
       state.error = null;
+      state.isAdmin = false
     },
   },
   extraReducers: (builder) => {
@@ -32,6 +34,9 @@ const authSlice = createSlice({
          state.user = action.payload.user
         state.loading = false;
         state.isAuthenticated = true;
+        if (action.payload.user.isAdmin) {
+         state.isAdmin = true 
+        }
       })
       .addCase(loginUser.rejected, (state, action) => {
          state.status = "succeeded";

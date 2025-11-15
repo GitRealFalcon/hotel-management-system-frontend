@@ -3,24 +3,21 @@ import { useForm } from 'react-hook-form'
 import { useNavigate, Link } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { Input, Button } from './index'
-import {loginUser} from '../features/auth/authThunks'
+import { loginUser } from '../features/auth/authThunks'
 import { toast } from 'react-toastify'
 import Logo from './Logo'
 
 
 const Login = () => {
   const { register, handleSubmit, formState: { errors } } = useForm()
-  const { loading, error, isAuthenticated } = useSelector((state) => state.auth)
+  const { loading, error, isAdmin, isAuthenticated } = useSelector((state) => state.auth)
   const dispatch = useDispatch()
   const navigate = useNavigate()
 
-  // ✅ Redirect after successful login
-  useEffect(() => {
-    if (isAuthenticated) {
-       toast.success('Login successful! 🎉')
-      navigate('/profile')
-    }
-  }, [isAuthenticated, navigate])
+  const onSubmit = (data) => {
+    dispatch(loginUser(data))
+
+  }
 
   useEffect(() => {
     if (error) {
@@ -28,12 +25,17 @@ const Login = () => {
     }
   }, [error])
 
-  // ✅ Handle login submission
-  const onSubmit = (data) => {
-    dispatch(loginUser(data))
-    
+  useEffect(() => {
+    if (isAdmin) {
+      toast.success('Admin Login successful! 🎉')
+      navigate("/admin-dashboard", { replace: true })
+    }else if (isAuthenticated) {
+      toast.success('Login successful! 🎉')
+      navigate('/profile', { replace: true })
+    }
+  }, [isAuthenticated, navigate, isAdmin])
 
-  }
+
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen p-6 ">
@@ -41,7 +43,7 @@ const Login = () => {
         onSubmit={handleSubmit(onSubmit)}
         className="w-full flex flex-col gap-2 max-w-md p-6 bg-white shadow-md rounded-lg"
       >
-        <div className=" self-center"><Logo height={80} width={80}/></div>
+        <div className=" self-center"><Logo height={80} width={80} /></div>
 
         <div className="text-sm text-center mb-6">
           Don&apos;t have an account?&nbsp;

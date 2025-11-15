@@ -21,6 +21,7 @@ import Customer from './pages/Customers.jsx';
 import Bookings from './pages/Bookings.jsx';
 import Payments from './pages/Payments.jsx';
 import CheckIn from './pages/CheckIn.jsx';
+import NotAuthorized from './pages/NotAuthorized.jsx';
 
 const router = createBrowserRouter([
   {
@@ -36,19 +37,14 @@ const router = createBrowserRouter([
       },
       {
         path: "/login",
-        element: (
-          <Protected authentication={false} >
+        element: (      
             <Login />
-          </Protected>
-
         )
       },
       {
         path: "/signup",
         element: (
-          <Protected authentication={false} >
             <SinghUp />
-          </Protected>
         )
       },
 
@@ -70,6 +66,12 @@ const router = createBrowserRouter([
       },
 
       {
+        path: "/not-authorized",
+        element: (
+          <NotAuthorized />
+        )
+      },
+      {
         path: "*",
         element: (
           <Custom404 />
@@ -81,26 +83,46 @@ const router = createBrowserRouter([
   {
     path: "/admin-dashboard",
     element: <Dashboard />,
-    children:[
+    children: [
       {
         path: "/admin-dashboard",
-        element: <MainDashboard/>
+        element: (
+          <Protected adminOnly={true} authentication={true} >
+            <MainDashboard />
+          </Protected>
+        )
       },
       {
         path: "/admin-dashboard/customers",
-        element: <Customer/>
+        element: (
+          <Protected adminOnly={true} authentication={true} >
+            <Customer />
+          </Protected>
+        )
       },
       {
         path: "/admin-dashboard/bookings",
-        element: <Bookings/>
+        element: (
+          <Protected adminOnly={true} authentication={true} >
+            <Bookings />
+          </Protected>
+        )
       },
       {
         path: "/admin-dashboard/payments",
-        element: <Payments/>
+        element: (
+          <Protected adminOnly={true} authentication={true} >
+            <Payments />
+          </Protected>
+        )
       },
       {
         path: "/admin-dashboard/check-in",
-        element: <CheckIn/>
+        element: (
+          <Protected adminOnly={true} authentication={true} >
+            <CheckIn />
+          </Protected>
+        )
       },
     ]
   },

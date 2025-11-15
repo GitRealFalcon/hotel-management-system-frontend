@@ -1,21 +1,21 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import api from "../../api/axios";
-import handleError from "../../utils/handleError"; // ✅ fixed typo
+import handleError from "../../utils/handleError";
 
-// 🔹 Login user thunk
+
 export const loginUser = createAsyncThunk(
   "auth/loginUser",
   async (credentials, thunkAPI) => {
     try {
       const res = await api.post("users/login", credentials);
 
-      // Save token
+      
       const token = res.data.data?.token;
       if (token) {
         localStorage.setItem("token", token);
       }
 
-      // Return structured payload
+     
       return {
         user: res.data.data?.user,
         token,
@@ -26,7 +26,7 @@ export const loginUser = createAsyncThunk(
   }
 );
 
-// 🔹 Fetch user details thunk
+
 export const fetchUser = createAsyncThunk(
   "auth/fetchUser",
   async (_, thunkAPI) => {
