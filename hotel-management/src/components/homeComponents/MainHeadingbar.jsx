@@ -40,7 +40,7 @@ const MainHeadingbar = ({scrollRef,CheckInDate,CheckOutDate,guest}) => {
         <div className='font-mono flex items-center gap-0.5'>
             <p className='dark:text-[var(--text-primary)]  text-[#1A202C] font-bold text-2xl'>₹2500</p><p className='text-sm text-gray-500 dark:text-gray-400'>INR/night</p>
         </div>
-        <Button onClick={findRooms} children={"View Rooms"} className='bg-gradient-to-tl h-fit from-gray-300 to-gray-950 text-white font-semibold w-fit'/>
+        <Button onClick={findRooms} children={"View Rooms"} textColor='dark:text-[var(--text-primary)]  text-[#1A202C]' className='  bg-transparent border font-semibold'/>
       </div>
     </div>
   )

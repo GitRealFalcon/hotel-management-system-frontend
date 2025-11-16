@@ -31,7 +31,7 @@ const RoomCard = ({
             <p className='font-mono font-bold text-2xl dark:text-[var(--text-primary)] text-[#1A202C]'>{"₹"+ price}</p><p className='text-sm text-gray-400'>INR/night</p>
         </div>
         <div className={`h-full flex items-end`}>
-        <Button onClick={handleBooking} children={"Book Now"} className={`${btnShow? "hidden": ""} bg-gradient-to-br h-fit from-gray-300 to-gray-950 text-white font-semibold w-fit`}/>
+        <Button onClick={handleBooking} children={"Book Now"} className={`${btnShow? "hidden": ""} bg-transparent border font-semibold`} textColor='dark:text-[var(--text-primary)]  text-[#1A202C]'/>
         </div>
       </div>
 

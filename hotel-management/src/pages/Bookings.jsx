@@ -28,8 +28,9 @@ const Bookings = () => {
           dispatch(setBooking(data))
         }
         setloading(false)
-        toast.success("Booking fetch successfully")
+       
       } catch (error) {
+         toast.error(error.responce.data.massege)
         console.log(error);
 
       }

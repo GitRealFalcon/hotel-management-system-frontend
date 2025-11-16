@@ -73,7 +73,7 @@ const Home = () => {
   return (
     <div className="relative w-full min-h-screen">
       <div className="overflow-x-hidden">
-        <div className='rounded-b-[100%] z-2 flex flex-col justify-center items-center ml-[-50%] w-[200%] h-[500px] bg-cover bg-center bg-[url("/4k-hotel.jpg")] invert-5'>
+        <div className='rounded-b-[100%] z-2 flex flex-col justify-center items-center ml-[-50%] w-[200%] h-[500px] bg-cover dark:contrast-150 bg-center bg-[url("/4k-hotel.jpg")]'>
           {/* Booking tab full */}
           <div className="lg:hidden w-1/3 h-45 bg-gradient-to-br justify-between items-center rounded-2xl shadow-xl backdrop-filter backdrop-blur-sm bg-opacity-0 from-gray-400 p-1">
 

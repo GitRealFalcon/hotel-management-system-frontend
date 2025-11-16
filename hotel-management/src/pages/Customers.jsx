@@ -15,14 +15,14 @@ const Customer = () => {
     (async()=>{
         try {
           const res = await api.get("users/get-customers")
-          
           const data = res?.data.data
           if (data) {
             dispatch(setCustomers(data))
           }
           setloading(false)
-          toast.success("Customers fetch successfully")
+          
         } catch (error) {
+          toast.error(error.responce.data.message)
          console.log(error);
          
         }

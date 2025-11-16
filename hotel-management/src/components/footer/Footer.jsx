@@ -50,7 +50,7 @@ const Footer = () => {
         <div className='flex w-1/3 flex-col gap-2 text-sm'>
           <span className='font-semibold dark:text-[var(--text-primary)]  text-[#1A202C]'>Falcon Plaza Privilege Club</span>
           <span className='font-semibold text-gray-400'>Welcome to the Falcon Plaza Privilege Club where luxury meets loyalty. Enjoy exclusive benefits, special offers, and memorable experiences designed to make every stay extraordinary.</span>
-          <Button children={"Join Now"} className={"bg-gradient-to-tl from-gray-300 to-gray-950 text-white font-semibold"} />
+          <Button children={"Join Now"} textColor='dark:text-[var(--text-primary)]  text-[#1A202C]' className='  bg-transparent border font-semibold' />
         </div>
 
        

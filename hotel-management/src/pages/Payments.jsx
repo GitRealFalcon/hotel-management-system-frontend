@@ -24,11 +24,12 @@ const Payments = () => {
                 const res = await api.get("transections/get-transections")
                 const data = res.data.data
                 dispatch(setTransection(data))
-                toast.success("transection fetched successfully")
                 setloading(false)
             } catch (error) {
                 toast.error(error.responce.data.massege)
-                setloading(false)
+                console.log(error);
+                
+                
             }
         })()
     }, [])
