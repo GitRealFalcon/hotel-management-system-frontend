@@ -59,6 +59,14 @@ const DashboarSidebar = () => {
                         </div>
                     )}
                 </NavLink>
+                <NavLink prefetch="intent" to={"/admin-dashboard/rooms"}>
+                    {({ isActive }) => (
+                        <div className={isActive ? 'flex gap-4 text-lg font-bold ' : 'flex gap-4 font-semibold  p-2'}>
+                            <img width={isActive ? 30 : 20} height={isActive ? 30 : 20} className='hover:h-[30px] hover:w-[30px]' src="/bed.svg" alt="room" />
+                            <p >Rooms</p>
+                        </div>
+                    )}
+                </NavLink>
             </div>
         </div>
     )

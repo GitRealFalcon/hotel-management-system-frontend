@@ -22,6 +22,7 @@ import Bookings from './pages/Bookings.jsx';
 import Payments from './pages/Payments.jsx';
 import CheckIn from './pages/CheckIn.jsx';
 import NotAuthorized from './pages/NotAuthorized.jsx';
+import Rooms from './pages/Rooms.jsx';
 
 const router = createBrowserRouter([
   {
@@ -121,6 +122,14 @@ const router = createBrowserRouter([
         element: (
           <Protected adminOnly={true} authentication={true} >
             <CheckIn />
+          </Protected>
+        )
+      },
+      {
+        path: "/admin-dashboard/rooms",
+        element: (
+          <Protected adminOnly={true} authentication={true} >
+           <Rooms/>
           </Protected>
         )
       },

@@ -96,7 +96,7 @@ const DashboardNavbar = () => {
           </div>
         </div>
       </div>
-      <div ref={dropDownRef} className={`${!showDropdown && "opacity-0"} transform transition-all duration-400 flex flex-col items-center justify-center gap-2 p-2 border border-gray-500 font-semibold dark:text-[var(--text-primary)] w-28 h-20 absolute right-4 top-36 third:top-20 dark:bg-[var(--bg-primary)] bg-[#F4F7FE] rounded-xl`}>
+      <div ref={dropDownRef} className={`${!showDropdown && "opacity-0 hidden"} transform transition-all duration-400 flex flex-col items-center justify-center gap-2 p-2 border border-gray-500 font-semibold dark:text-[var(--text-primary)] w-28 h-20 absolute right-4 top-36 third:top-20 dark:bg-[var(--bg-primary)] bg-[#F4F7FE] rounded-xl`}>
         <Link to={"/profile"} className='hover:text-lg'>
           Profile
         </Link>
