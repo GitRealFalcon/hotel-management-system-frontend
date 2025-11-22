@@ -26,8 +26,8 @@ const BookingCard = ({roomNo,checkIn,checkOut,amount,active,status,bookingId,isP
                 <div className='dark:text-[var(--text-primary)] overflow-clip text-[#1A202C]'>{status}</div>
             </div>}
             {(active === "Active" && !isPayed) && <div className={`flex flex-col items-center gap-1 `}>
-                <div className='font-bold text-green-500 text-lg '>{amount}</div>
-                <div onClick={()=>handlePayment({amount,bookingId})}><Button children={"Pay Now"} textColor='dark:text-[var(--text-primary)]  text-[#1A202C]' className='  bg-transparent border font-semibold' /></div>
+                <div  className='font-bold text-green-500 text-lg '>{amount}</div>
+                <div className='dark:text-[var(--text-primary)] overflow-clip text-[#1A202C]' onClick={()=>handlePayment({amount,bookingId})}>Pay Now</div>
             </div>}
         </div>
     )

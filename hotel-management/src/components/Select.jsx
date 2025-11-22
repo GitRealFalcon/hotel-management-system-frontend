@@ -10,6 +10,7 @@ const Select = ({
     
 },ref) => {
     const id = useId()
+    options = options.filter((each)=> each)
   return (
     <div className={`flex ${flex_col}`} >
       {label && <label  className='inline-block mb-1 text-gray-400 pl-1 font-semibold' htmlFor={id}>{label}</label>}

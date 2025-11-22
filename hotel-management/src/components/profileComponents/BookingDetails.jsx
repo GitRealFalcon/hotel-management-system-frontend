@@ -112,6 +112,10 @@ const BookingDetails = ({ booking, showBooking, onClose }) => {
                             <div className='font-semibold dark:text-[var(--text-primary)] text-[#1A202C]'>{booking?.checkOut ? dayjs(booking.checkOut).format("DD/MM/YYYY") : "N/A"}</div>
                         </div>
                         <div>
+                            <div className='text-gray-400'>Booking Id</div>
+                            <div className='font-semibold dark:text-[var(--text-primary)] text-[#1A202C]'>{booking?._id ? booking._id : "N/A"}</div>
+                        </div>
+                        <div>
                             <div className='text-gray-400'>Amount</div>
                             <div className='font-semibold dark:text-[var(--text-primary)] text-[#1A202C]'>{booking?.totalAmount ? booking.totalAmount : "N/A"}</div>
                         </div>

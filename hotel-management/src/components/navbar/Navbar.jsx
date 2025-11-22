@@ -16,7 +16,7 @@ import { setTheme } from '../../features/theme/themeSlice';
 const Navbar = () => {
     const [selected, setSelected] = useState("");
     const { isAuthenticated, user } = useSelector((state) => state.auth)
-    const option = [user?.fullName, "Profile", "Hitory", "Booking"]
+    const option = [user?.fullName, "Profile", user?.isAdmin && "Dashboard"]
     const dispatch = useDispatch()
     const navigate = useNavigate()
     const location = useLocation()
@@ -64,11 +64,8 @@ const Navbar = () => {
             case "Profile":
                 navigate("/profile")
                 break;
-            case "Hitory":
-                navigate("/history")
-                break;
-            case "Booking":
-                navigate("/bookings")
+            case "Dashboard":
+                navigate("/admin-dashboard")
                 break;
             default:
                 break;

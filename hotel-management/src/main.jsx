@@ -23,6 +23,7 @@ import Payments from './pages/Payments.jsx';
 import CheckIn from './pages/CheckIn.jsx';
 import NotAuthorized from './pages/NotAuthorized.jsx';
 import Rooms from './pages/Rooms.jsx';
+import AllRooms from './pages/AllRooms.jsx';
 
 const router = createBrowserRouter([
   {
@@ -55,6 +56,12 @@ const router = createBrowserRouter([
           <Protected authentication={true} >
             <Profile />
           </Protected>
+        )
+      },
+      {
+        path: "/rooms",
+        element: (
+            <AllRooms />
         )
       },
       {

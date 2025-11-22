@@ -4,7 +4,7 @@ import { toast } from "react-toastify";
 const handlePayment = async ({ amount, bookingId }) => {
   const data = { amount, bookingId };
 
-  const res = await api.post("transactions/create-order", data);
+  const res = await api.post("transections/create-order", data);
 
   const { orderId, key } = res.data.data;
 
@@ -18,7 +18,7 @@ const handlePayment = async ({ amount, bookingId }) => {
     handler: async function (response) {
       // 3️⃣ Send verification to backend
      
-        await api.post("transactions/verify-payment", {
+        await api.post("transections/verify-payment", {
           ...response,
           amount,
           bookingId,
