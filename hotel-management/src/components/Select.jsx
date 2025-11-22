@@ -4,12 +4,14 @@ import React,{useId} from 'react'
 const Select = ({
     options = [],
     label,
+    flex_col,
     className= "",
     ...props
+    
 },ref) => {
     const id = useId()
   return (
-    <div >
+    <div className={`flex ${flex_col}`} >
       {label && <label  className='inline-block mb-1 text-gray-400 pl-1 font-semibold' htmlFor={id}>{label}</label>}
       <select id={id} {...props}
       ref={ref}

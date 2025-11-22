@@ -100,7 +100,7 @@ const DashboardNavbar = () => {
         <Link to={"/profile"} className='hover:text-lg'>
           Profile
         </Link>
-        <Link onClick={handleLogout} className='hover:text-lg'>
+        <Link  onClick={handleLogout} className='hover:text-lg'>
           Logout
         </Link>
       </div>

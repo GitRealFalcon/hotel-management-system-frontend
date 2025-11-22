@@ -4,7 +4,7 @@ import { useState } from "react";
 
 
 
-function RoomComponent({ room }) {
+function RoomComponent({ room ,showEditRoom,EditRoomData}) {
   const [show, setShow] = useState(false);
   return (
     <div
@@ -57,7 +57,7 @@ function RoomComponent({ room }) {
             </div>
           </div>
 
-          <Button children={"Edit"} className="w-fit h-fit col-end-5" />
+          <Button onClick={()=>(showEditRoom(), EditRoomData(room))} children={"Edit"} className="w-fit h-fit col-end-5" />
         </div>
       </div>
     </div>

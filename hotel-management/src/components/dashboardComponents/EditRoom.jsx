@@ -1,40 +1,41 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Input from '../Input'
 import Button from '../Button'
 import Select from '../Select'
 import { useForm } from 'react-hook-form'
 import { useRef } from 'react'
 import api from '../../api/axios'
-import { useSelector, useDispatch } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { getRooms } from '../../features/rooms/roomSlice'
 import { toast } from 'react-toastify'
 
-const AddRoom = ({ onClose, showAddRoom }) => {
+const EditRoom = ({ onClose, showEditRoom, room }) => {
   const dispatch = useDispatch()
   const selectRef = useRef()
   const { register, handleSubmit,reset, formState: { errors } } = useForm()
+  
+  useEffect(() => {
+    if (room) {
+     reset({
+    roomNo: room.roomNo || "",
+    price: room.price || "",
+    description : room.description || "",
+    capacity : room.capacity || "",
+    type : room.type || ""
+  })
+   }
+  }, [room, reset])
+  
+  
   const onSubmit = (data) => {
-    console.log(data);
-
+   
     ; (async () => {
-      try {
-        const formData = new FormData();
-        formData.append("roomNo", data.roomNo);
-        formData.append("price", data.price);
-        formData.append("description", data.description);
-        formData.append("capacity", data.capacity);
-        formData.append("type", data.type);
-
-        if (data.image && data.image.length > 0) {
-          formData.append("image", data.image[0]);
-        }
-
-        await api.post("rooms/add-room", formData,{headers:{"Content-Type": "multipart/form-data"}})
+      try { 
+        await api.patch("rooms/update-details", data)
         const res = await api.get("rooms/all-rooms")
         const roomData = res.data.data
         dispatch(getRooms(roomData))
-        toast.success("Room Add successfully")
-        reset();
+        toast.success("Room Update successfully")
         onClose()
       } catch (error) {
         console.log(error);
@@ -45,7 +46,7 @@ const AddRoom = ({ onClose, showAddRoom }) => {
   }
 
   const Options = ["Single", "Double", "Suite", "Deluxe", "Family"]
-  if (!showAddRoom) return null;
+  if (!showEditRoom) return null;
   return (
     <div className='w-full h-full  z-10 absolute backdrop-blur-sm bg-opacity-0 from-gray-400 flex pt-10 justify-center'>
       <div className=' h-[70%] w-[60%] dark:bg-[var(--bg-secondry)] bg-[#FFFFFF] dark:border-none flex flex-col justify-around p-6 rounded-xl border border-slate-300'>
@@ -58,7 +59,7 @@ const AddRoom = ({ onClose, showAddRoom }) => {
           <div className='w-full  flex flex-col gap-5 p-2 py-5 text-sm'>
             <div className='flex gap-5'>
               <div>
-                <Input min="1" label="Room No" type="number" className="font-semibold dark:text-[var(--text-primary)] text-[#1A202C] bg-[#F4F7FE] dark:bg-[var(--bg-primary)]"
+                <Input disabled min="1" label="Room No" type="number" className="font-semibold dark:text-[var(--text-primary)] text-[#1A202C] bg-[#F4F7FE] dark:bg-[var(--bg-primary)]"
                   {...register("roomNo", {
                     required: "ROOM NO is Required",
                     min: { value: 1, message: "Room number must be at least 1" }
@@ -104,16 +105,6 @@ const AddRoom = ({ onClose, showAddRoom }) => {
             </div>
             <div className='flex gap-5'>
               <div>
-                <Input label="Image" type="file" className="font-semibold dark:text-[var(--text-primary)] text-[#1A202C] bg-[#F4F7FE] dark:bg-[var(--bg-primary)]"
-                  {...register("image", {
-                    required: "Image is Required",
-                  })}
-                />
-                {errors.image && (
-                  <p className="text-red-500 text-sm mt-1">{errors.image.message}</p>
-                )}
-              </div>
-              <div>
                 <Select ref={selectRef} label="Type" className="font-semibold" flex_col="flex-col" options={Options}
                   {...register("type", {
                     required: "select Room Type",
@@ -128,7 +119,7 @@ const AddRoom = ({ onClose, showAddRoom }) => {
 
           </div>
           <div className='w-full h-16 flex justify-end gap-4 p-2'>
-            <div ><Button type="submit" bgColor='bg-green-500' className='font-semibold ' children={"Add Room"} /></div>
+            <div ><Button type="submit" bgColor='bg-green-500' className='font-semibold ' children={"Update Room"} /></div>
           </div>
         </form>
       </div>
@@ -136,4 +127,4 @@ const AddRoom = ({ onClose, showAddRoom }) => {
   )
 }
 
-export default AddRoom
+export default EditRoom

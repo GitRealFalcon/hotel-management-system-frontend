@@ -14,7 +14,7 @@ const DashboarSidebar = () => {
                 <div className='w-full border-gray-300 border-b'></div>
             </div>
             <div className='flex flex-col justify-center dark:text-[var(--text-primary)] text-[#1A202C]  fifth:px-4 gap-2'>
-                <NavLink prefetch="intent" to={"/admin-dashboard"} end>
+                <NavLink  prefetch="intent" to={"/admin-dashboard"} end>
 
                     {({ isActive }) => (
                         <div className={isActive ? 'flex gap-4 text-lg items-center font-bold ' : 'flex gap-4 items-center font-semibold p-2'}>
@@ -25,7 +25,7 @@ const DashboarSidebar = () => {
 
 
                 </NavLink>
-                <NavLink prefetch="intent" to={"/admin-dashboard/customers"}>
+                <NavLink  prefetch="intent" to={"/admin-dashboard/customers"}>
                     {({ isActive }) => (
                         <div className={isActive ? 'flex gap-4 text-lg font-bold ' : 'flex gap-4 font-semibold p-2'}>
                             <img width={isActive ? 30 : 20} height={isActive ? 30 : 20} src="/person.svg" alt="person" />
@@ -34,7 +34,7 @@ const DashboarSidebar = () => {
                     )}
 
                 </NavLink>
-                <NavLink prefetch="intent" to={"/admin-dashboard/bookings"}>
+                <NavLink  prefetch="intent" to={"/admin-dashboard/bookings"}>
 
                     {({ isActive }) => (
                         <div className={isActive ? 'flex gap-4 text-lg font-bold ' : 'flex gap-4 font-semibold p-2'}>
@@ -43,7 +43,7 @@ const DashboarSidebar = () => {
                         </div>
                     )}
                 </NavLink>
-                <NavLink prefetch="intent" to={"/admin-dashboard/payments"}>
+                <NavLink  prefetch="intent" to={"/admin-dashboard/payments"}>
                     {({ isActive }) => (
                         <div className={isActive ? 'flex gap-4 text-lg font-bold ' : 'flex gap-4 font-semibold p-2'}>
                             <img width={isActive ? 30 : 20} height={isActive ? 30 : 20} src="/currency_rupee.svg" alt="home" />
@@ -51,7 +51,7 @@ const DashboarSidebar = () => {
                         </div>
                     )}
                 </NavLink>
-                <NavLink prefetch="intent" to={"/admin-dashboard/check-in"}>
+                <NavLink  prefetch="intent" to={"/admin-dashboard/check-in"}>
                     {({ isActive }) => (
                         <div className={isActive ? 'flex gap-4 text-lg font-bold ' : 'flex gap-4 font-semibold  p-2'}>
                             <img width={isActive ? 30 : 20} height={isActive ? 30 : 20} className='hover:h-[30px] hover:w-[30px]' src="/checkIn.svg" alt="home" />
@@ -59,7 +59,7 @@ const DashboarSidebar = () => {
                         </div>
                     )}
                 </NavLink>
-                <NavLink prefetch="intent" to={"/admin-dashboard/rooms"}>
+                <NavLink  prefetch="intent" to={"/admin-dashboard/rooms"}>
                     {({ isActive }) => (
                         <div className={isActive ? 'flex gap-4 text-lg font-bold ' : 'flex gap-4 font-semibold  p-2'}>
                             <img width={isActive ? 30 : 20} height={isActive ? 30 : 20} className='hover:h-[30px] hover:w-[30px]' src="/bed.svg" alt="room" />
