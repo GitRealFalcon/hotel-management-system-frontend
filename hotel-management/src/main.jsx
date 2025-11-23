@@ -24,6 +24,8 @@ import CheckIn from './pages/CheckIn.jsx';
 import NotAuthorized from './pages/NotAuthorized.jsx';
 import Rooms from './pages/Rooms.jsx';
 import AllRooms from './pages/AllRooms.jsx';
+import About from './pages/About.jsx';
+import Services from './pages/Service.jsx';
 
 const router = createBrowserRouter([
   {
@@ -62,6 +64,18 @@ const router = createBrowserRouter([
         path: "/rooms",
         element: (
             <AllRooms />
+        )
+      },
+      {
+        path: "/about",
+        element: (
+            <About />
+        )
+      },
+      {
+        path: "/service",
+        element: (
+            <Services />
         )
       },
       {
