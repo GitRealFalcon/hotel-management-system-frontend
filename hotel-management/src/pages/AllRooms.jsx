@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState,useRef } from 'react'
 import RoomCard from "../components/RoomCard"
 import { useSelector, useDispatch } from 'react-redux'
 import api from '../api/axios'
@@ -27,9 +27,10 @@ const AllRooms = () => {
   const [typeFilter, settypeFilter] = useState("")
   const [capFilter, setcapFilter] = useState("")
   const [capecity, setcapecity] = useState([])
+  const guestRef = useRef()
   const options = ["Single", "Double", "Suite", "Deluxe", "Family"]
   const priceOptions = [
-     "All",
+    "All",
     "500 1000",
     "1000 2000",
     "2000 3000",
@@ -37,47 +38,48 @@ const AllRooms = () => {
     "4000 5000"
   ]
   useEffect(() => {
-    setrooms(roomsData.filter((each)=> each.isAvailable))
+    setrooms(roomsData.filter((each) => each.isAvailable))
   }, [roomsData])
-  
+
   useEffect(() => {
-      const capValues = Array.from(new Map(rooms.map((room)=>[room.capacity,room])).values())
-      console.log(capValues);
-      
-      setcapecity(capValues)
-      let filter = rooms
-      if (priceFilter === "All") {
-        filter = rooms
-      } else {
-        const [min, max] = priceFilter.split(" ").map(Number)
-        filter = filter.filter((each)=> each.price >= min && each.price <= max)
-      }
+    const capValues = Array.from(new Map(rooms.map((room) => [room.capacity, room])).values())
+    
+    setcapecity(capValues)
+    let filter = rooms
+    if (priceFilter === "All") {
+      filter = rooms
+    } else {
+      const [min, max] = priceFilter.split(" ").map(Number)
+      filter = filter.filter((each) => each.price >= min && each.price <= max)
+    }
 
-      if (typeFilter) {
-        filter = filter.filter((each)=> each.type === typeFilter)
-      }
+    if (typeFilter) {
+      filter = filter.filter((each) => each.type === typeFilter)
+    }
 
-      if (capFilter) {
-        filter = filter.filter((each)=> each.capacity === capFilter)
-        
-      }
-     
-      setfilterRooms(filter)
-      
-  }, [roomsData,rooms,priceFilter,typeFilter,capFilter])
+    if (capFilter) {
+      filter = filter.filter((each) => each.capacity === capFilter)
+
+    }
+
+    setfilterRooms(filter)
+
+  }, [roomsData, rooms, priceFilter, typeFilter, capFilter])
+
 
 
   return (
     <div className='w-full bg-[#F4F7FE] dark:bg-[var(--bg-primary)]'>
-      <div className='w-full min-h-screen flex mt-[72px]'>
-        <div className=' flex  w-[20%] dark:bg-[var(--bg-secondry)] bg-[#FFFFFF] flex-col gap-4  p-2'>
-          <div className=' bg-[#F4F7FE] dark:bg-[var(--bg-primary)] flex flex-col justify-center py-4 p-3 gap-3 rounded-xl'>
-              <Select onChange={(e)=>setpriceFilter(e.target.value)} label="Price" flex_col="flex-col" options={priceOptions}/>
-              <Select onChange={(e)=>settypeFilter(e.target.value)} label="Room Type" flex_col="flex-col" options={options}/>
-               {capecity.map((item) => <div key={item.capacity} onClick={() => setcapFilter(item.capacity)} className='cursor-pointer dark:text-[var(--text-primary)] overflow-clip text-[#1A202C] p-2 text-center border rounded-lg '>{item.capacity + " Guest"}</div>)}
+      <div className='w-full min-h-screen flex flex-col mt-[72px]'>
+        <div className=' flex  dark:bg-[var(--bg-secondry)] bg-[#FFFFFF] flex-col gap-4  p-2'>
+          <div className=' bg-[#F4F7FE] dark:bg-[var(--bg-primary)] flex justify-center py-2 gap-2 rounded-xl'>
+            <Select onChange={(e) => setpriceFilter(e.target.value)}  options={priceOptions} />
+            <Select onChange={(e) => settypeFilter(e.target.value)}  options={options} />
+            <Select  ref={guestRef} onChange={(e) => setcapFilter(Number(e.target.value))} options={capecity.map((item) => item.capacity)} />
+            {/* {capecity.map((item) => <div key={item.capacity} onClick={() => setcapFilter(item.capacity)} className='cursor-pointer dark:text-[var(--text-primary)] overflow-clip text-[#1A202C] p-2 text-center border rounded-lg '>{item.capacity + " Guest"}</div>)} */}
           </div>
         </div>
-        <div className=' p-4 h-full overflow-y-auto w-[80%] grid grid-cols-3 gap-4 '>
+        <div className=' p-4 h-full overflow-y-auto grid grid-cols-1 forth:grid-cols-2 second:grid-cols-3 gap-4 '>
           {filterRooms.length > 0 && filterRooms.map((room) => <RoomCard
             key={room._id}
             type={room.type}

@@ -47,8 +47,8 @@ const EditProfile = ({ onClose, showEdit }) => {
 
   if (!showEdit) return null;
   return (
-    <div className={` h-screen w-full backdrop-blur-sm bg-opacity-0 from-gray-400 flex items-center justify-center absolute`}>
-      <div className=' h-[60%] w-[60%] dark:bg-[var(--bg-secondry)] bg-[#FFFFFF] dark:border-none flex flex-col justify-around p-6 rounded-xl border border-slate-300'>
+    <div className={` min-h-screen w-full backdrop-blur-sm bg-opacity-0 from-gray-400 flex items-center justify-center absolute`}>
+      <div className=' h-[90%] forth:h-[70%] w-[95%] forth:w-[90%] third:w-[80%] second:w-[60%] dark:bg-[var(--bg-secondry)] bg-[#FFFFFF] dark:border-none flex flex-col justify-around p-6 rounded-xl border border-slate-300'>
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className='flex justify-between h-10'>
             <h2 className='font-semibold dark:text-[var(--text-primary)] text-[#1A202C]'>Update Profile</h2>
@@ -56,7 +56,7 @@ const EditProfile = ({ onClose, showEdit }) => {
           </div>
           <div className='w-full border-gray-400 border-b'></div>
           <div className='w-full  flex flex-col gap-5 p-2 py-5 text-sm'>
-            <div className='flex gap-5'>
+            <div className='flex forth:flex-row flex-col gap-5'>
               <div>
                 <Input label="Full Name" className="font-semibold dark:text-[var(--text-primary)] text-[#1A202C] bg-[#F4F7FE] dark:bg-[var(--bg-primary)]"
                   {...register("fullName", {

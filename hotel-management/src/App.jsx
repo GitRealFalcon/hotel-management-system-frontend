@@ -8,6 +8,7 @@ import { useDispatch,useSelector } from 'react-redux'
 import { fetchUser } from "./features/auth/authThunks"
 import { useEffect } from 'react'
 import ScrollToTop from './components/ScrollToTop'
+import SideNavbar from './components/navbar/SideNavbar'
 
 function App() {
   const dispatch = useDispatch()
@@ -37,6 +38,7 @@ function App() {
 
 
       <Navbar />
+      <SideNavbar/>
       <main className="grow">
         <ScrollToTop/>
         <Outlet />

@@ -12,7 +12,7 @@ const Select = ({
     const id = useId()
     options = options.filter((each)=> each)
   return (
-    <div className={`flex ${flex_col}`} >
+    <div className={`flex gap-2 items-center ${flex_col}`} >
       {label && <label  className='inline-block mb-1 text-gray-400 pl-1 font-semibold' htmlFor={id}>{label}</label>}
       <select id={id} {...props}
       ref={ref}

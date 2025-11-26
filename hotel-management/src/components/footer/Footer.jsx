@@ -7,7 +7,7 @@ import Button from "../Button"
 
 const Footer = () => {
   return (
-    <footer className='w-full h-[400px] dark:bg-[var(--bg-secondry)] bg-[#FFFFFF]  flex flex-col items-center gap-7 justify-center p-5'>
+    <footer className='w-full h-[750px]  fifth:h-[550px] md:h-[400px] dark:bg-[var(--bg-secondry)] bg-[#FFFFFF]  flex flex-col items-center gap-7 justify-center p-5'>
       <div className='flex justify-between w-full'>
         <Logo height={60} width={60} />
         <div className=' flex gap-3'>
@@ -18,9 +18,9 @@ const Footer = () => {
         </div>
       </div>
 
-      <div className='flex justify-between w-full'>
+      <div className='grid grid-cols-1 fifth:grid-cols-2 gap-2 sm:grid-cols-4 w-full'>
 
-        <div className='flex flex-col gap-2 w-1/5 text-sm'>
+        <div className='flex flex-col gap-2  text-sm'>
           <span className='font-semibold dark:text-[var(--text-primary)]  text-[#1A202C]'>Service</span>
           <span className='font-semibold text-gray-400'>Find a hotel</span>
           <span className='font-semibold text-gray-400'>Location</span>
@@ -31,7 +31,7 @@ const Footer = () => {
             </div>
         </div>
 
-        <div className='flex flex-col gap-2 w-1/5 text-sm'>
+        <div className='flex flex-col gap-2  text-sm'>
           <span className='font-semibold dark:text-[var(--text-primary)]  text-[#1A202C]'>Company</span>
           <span className='font-semibold text-gray-400'>About</span>
           <span className='font-semibold text-gray-400'>Careers</span>
@@ -39,7 +39,7 @@ const Footer = () => {
           <span className='font-semibold text-gray-400'>Travel Agents</span> 
         </div>
 
-        <div className='flex flex-col w-1/5 gap-2 text-sm'>
+        <div className='flex flex-col  gap-2 text-sm'>
           <span className='font-semibold dark:text-[var(--text-primary)]  text-[#1A202C]'>Help</span>
           <span className='font-semibold text-gray-400'>Customer Support</span>
           <span className='font-semibold text-gray-400'>Guest Feedback</span>
@@ -47,7 +47,7 @@ const Footer = () => {
         </div>
 
 
-        <div className='flex w-1/3 flex-col gap-2 text-sm'>
+        <div className='flex flex-col gap-2 text-sm'>
           <span className='font-semibold dark:text-[var(--text-primary)]  text-[#1A202C]'>Falcon Plaza Privilege Club</span>
           <span className='font-semibold text-gray-400'>Welcome to the Falcon Plaza Privilege Club where luxury meets loyalty. Enjoy exclusive benefits, special offers, and memorable experiences designed to make every stay extraordinary.</span>
           <Button children={"Join Now"} textColor='dark:text-[var(--text-primary)]  text-[#1A202C]' className='  bg-transparent border font-semibold' />

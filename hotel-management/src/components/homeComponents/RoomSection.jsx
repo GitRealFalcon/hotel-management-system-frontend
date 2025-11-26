@@ -13,6 +13,7 @@ const RoomSection = ({ref}) => {
   const [rooms, setRooms] = useState([])
   const [capFilter, setcapFilter] = useState([])
   const selectRef = useRef()
+  const guestRef = useRef(null)
   
 const dispatch = useDispatch()
   useEffect(() => {
@@ -62,14 +63,13 @@ const dispatch = useDispatch()
 
 
   const filterByCapecity = (e) => {
-
     setRooms(rooms.filter((room) => room.capacity === e))
   }
 
 
 
   return (
-    <div ref={ref} className='mt-4 flex flex-col gap-4'>
+    <div ref={ref} className='mt-4 flex flex-col gap-4 transform transition-all duration-300'>
 
       <div className='flex flex-col gap-2'>
         <span className='text-orange-700 font-semibold'>Guest Rooms</span>
@@ -78,19 +78,24 @@ const dispatch = useDispatch()
 
       <div className='flex gap-2 '>
         <Select ref={selectRef} onChange={handleSelect} options={options} />
+        <div className='sm:hidden'>
+        <Select ref={guestRef} onChange={(e)=>filterByCapecity(Number(e.target.value))} options={capFilter.map((item)=>item.capacity)}/>
+        </div>
+        <div className=' gap-2 sm:flex hidden'>
         {capFilter.map((item) => <div key={item.capacity} onClick={() => filterByCapecity(item.capacity)} className='cursor-pointer dark:text-[var(--text-primary)] overflow-clip text-[#1A202C] p-2 text-center border rounded-lg '>{item.capacity + " Guest"}</div>)}
+        </div>
       </div>
 
-      <div className='grid grid-cols-3 gap-3'>
+      <div className='grid grid-cols-1 forth:grid-cols-2 third:grid-cols-3 gap-3'>
 
-        {rooms.map((room) => <RoomCard
-          key={room._id}
+        {rooms.map((room) => <div key={room._id} className='transform transition-all duration-300 hover:scale-105'><RoomCard
+          
           type={room.type}
           image={room.image[0].secure_url}
           capecity={room.capacity}
           price={room.price}
           roomNo={room.roomNo}
-        />)}
+        /></div>)}
 
       </div>
     </div>

@@ -68,9 +68,9 @@ const Profile = () => {
     <div className='w-full bg-[#F4F7FE] dark:bg-[var(--bg-primary)]'>
       <BookingDetails onClose={() => setshowBooking(false)} booking={booking} showBooking={showBooking} />
       <EditProfile onClose={() => setshowEdit(false)} showEdit={showEdit} />
-      <div className='w-full h-full flex mt-[72px]'>
+      <div className='w-full h-full flex flex-col third:flex-row mt-[72px]'>
 
-        <div className=' flex w-[30%] dark:bg-[var(--bg-secondry)] bg-[#FFFFFF] flex-col gap-4  p-4'>
+        <div className=' flex w-full third:w-[40%] second:w-[30%] dark:bg-[var(--bg-secondry)] bg-[#FFFFFF] flex-col gap-4  p-4'>
           <div className='h-40 bg-[#F4F7FE] dark:bg-[var(--bg-primary)] flex flex-col justify-center items-center p-2 gap-1 rounded-xl'>
             <div className='w-15 h-15 rounded-full overflow-hidden  border'><img src="https://img.freepik.com/premium-vector/man-avatar-profile-picture-isolated-background-avatar-profile-picture-man_1293239-4855.jpg" alt="avatar" /></div>
             <div className='flex flex-col items-center font-semibold'>
@@ -138,9 +138,9 @@ const Profile = () => {
 
 
 
-        <div className=' p-4 w-[70%] flex flex-col gap-4 '>
+        <div className=' p-4 w-full third:w-[70%] flex flex-col gap-4 '>
 
-          <div className=' h-40 rounded-xl py-3 px-6 dark:bg-[var(--bg-secondry)] bg-[#FFFFFF]'>
+          <div className=' h-40 rounded-xl py-3 px-2 third:px-6 dark:bg-[var(--bg-secondry)] bg-[#FFFFFF]'>
             <div className='h-10'>
               <h2 className='dark:text-[var(--text-primary)] overflow-clip text-[#1A202C] font-semibold mb-1'>Active Booking</h2>
             </div>
@@ -164,12 +164,12 @@ const Profile = () => {
             </div>
           </div>
 
-          <div className='dark:bg-[var(--bg-secondry)] bg-[#FFFFFF] h-[450px] rounded-xl p-6'>
+          <div className='dark:bg-[var(--bg-secondry)] bg-[#FFFFFF] h-[450px] rounded-xl px-2 third:px-6'>
             <div className='h-10'>
               <h2 className='dark:text-[var(--text-primary)] overflow-clip text-[#1A202C] font-semibold mb-1'>Booking History</h2>
             </div>
             <div className='w-full border-gray-300 border-b mb-2'></div>
-            <div className='flex h-[360px] flex-col p-2 gap-2 overflow-y-auto'>
+            <div className='flex h-[360px] flex-col gap-2 overflow-y-auto'>
               {!user?.Bookings?.length ? (
                 <p className='dark:text-[var(--text-primary)] overflow-clip text-[#1A202C] font-semibold' >No bookings found.</p>
               ) : (
