@@ -6,7 +6,7 @@ import Logo from "../components/Logo";
 import MainHeadingbar from "../components/homeComponents/MainHeadingbar";
 import ImageCollage from "../components/homeComponents/ImageCollage";
 import RoomSection from "../components/homeComponents/RoomSection";
-import Map from "../components/homeComponents/map";
+import Map from "../components/homeComponents/Map";
 import { useDispatch } from "react-redux";
 import { fetchUser } from "../features/auth/authThunks";
 
