@@ -99,16 +99,16 @@ const NewBooking = () => {
 
 
     return (
-        <div className=' w-full h-screen bg-cover  bg-[url("/4k-hotel.jpg")] flex items-center '>
-            <Container className={"flex justify-center"}>
-                <div className='bg-[#F4F7FE] dark:bg-[var(--bg-primary)] dark:border-none rounded-xl p-4 justify-around w-[60%] items-center border flex'>
-                    <div className='w-[60%] p-2  rounded-xl dark:bg-[var(--bg-secondry)] bg-[#FFFFFF]'>
+        <div className=' w-full min-h-screen bg-cover  bg-[url("/4k-hotel.jpg")] flex items-center '>
+            <Container className={"flex items-center h-full justify-center"}>
+                <div className='mt-20 mb-5 bg-[#F4F7FE] dark:bg-[var(--bg-primary)] dark:border-none rounded-xl p-4 justify-around  w-full third:w-[80%] second:w-[70%] items-center border flex'>
+                    <div className='w-full sm:w-[60%] p-2  rounded-xl dark:bg-[var(--bg-secondry)] bg-[#FFFFFF]'>
                         <form onSubmit={handleSubmit}>
                             <div className=' flex flex-col gap-2 p-2'>
                                 <h1 className='font-semibold dark:text-[var(--text-primary)] text-[#1A202C]'>Booking Details</h1>
-                                <div className='flex w-full'>
+                                <div className='flex fifth:flex-row flex-col w-full'>
 
-                                    <div className='flex flex-col w-1/2 text-sm gap-2 px-2'>
+                                    <div className='flex flex-col w-full fifth:w-1/2 text-sm gap-2 px-2'>
                                         <div className='flex flex-col gap-1 '>
                                             <div className='text-gray-400 font-semibold'>Check-In</div>
                                             <div onClick={() => { setcalShow(!calShow); setisActive("checkIn") }} className='font-semibold cursor-pointer bg-[#F4F7FE] dark:bg-[var(--bg-primary)] dark:text-[var(--text-primary)] text-[#1A202C] p-2 w-full rounded-lg'>{checkIn}</div>
@@ -119,7 +119,7 @@ const NewBooking = () => {
                                         </div>
                                     </div>
 
-                                    <div className='flex flex-col text-sm w-1/2 gap-2 px-2'>
+                                    <div className='flex flex-col text-sm w-full fifth:w-1/2 gap-2 px-2'>
                                         <div className='flex flex-col gap-1 '>
                                             <div className='text-gray-400 font-semibold'>Check-out</div>
                                             <div onClick={() => { setcalShow(!calShow); setisActive("checkOut") }} className='font-semibold cursor-pointer bg-[#F4F7FE] dark:bg-[var(--bg-primary)] dark:text-[var(--text-primary)] text-[#1A202C] p-2 w-full rounded-lg'>{checkOut}</div>
@@ -134,8 +134,9 @@ const NewBooking = () => {
 
                             <div className=' flex flex-col gap-2 p-2'>
                                 <h2 className='font-semibold dark:text-[var(--text-primary)] text-[#1A202C]'>Contact Details</h2>
-                                <div className='flex w-full pb-3'>
-                                    <div className='flex flex-col text-sm w-1/2 gap-2 px-2'>
+                                <div className='flex fifth:flex-row flex-col w-full pb-3'>
+
+                                    <div className='flex flex-col text-sm w-full fifth:w-1/2 gap-2 px-2'>
                                         <div className='flex flex-col gap-1 '>
                                             <div className='text-gray-400 font-semibold'>First Name</div>
                                             <div className='font-semibold bg-[#F4F7FE] dark:bg-[var(--bg-primary)] dark:text-[var(--text-primary)] text-[#1A202C] p-2 w-full rounded-lg'>{first ? first : "N/A"}</div>
@@ -146,7 +147,7 @@ const NewBooking = () => {
                                         </div>
                                     </div>
 
-                                    <div className='flex flex-col text-sm w-1/2 gap-2 px-2'>
+                                    <div className='flex flex-col text-sm w-full fifth:w-1/2 gap-2 px-2'>
                                         <div className='flex flex-col gap-1 '>
                                             <div className='text-gray-400 font-semibold'>Last Name</div>
                                             <div className='font-semibold bg-[#F4F7FE] dark:bg-[var(--bg-primary)] dark:text-[var(--text-primary)] text-[#1A202C] p-2 w-full rounded-lg'>{last ? last : "N/A"}</div>
@@ -161,12 +162,12 @@ const NewBooking = () => {
                             </div>
                         </form>
                     </div>
-                    <div className='w-[38%]'>
+                    <div className='hidden sm:block w-[38%]'>
                         <RoomCard type={room.type} capecity={room.capacity} price={room.price} image={room.image ? room.image[0].secure_url : "https://images.unsplash.com/photo-1631049552057-403cdb8f0658?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8aG90ZWwlMjByb29tfGVufDB8fDB8fHww&fm=jpg&q=60&w=3000"} btnShow={true} />
                     </div>
                 </div>
                 <div ref={calRef} className={`
-           fixed left-1/4 top-50 rounded-2xl shadow-xl 
+           fixed  fifth:left-1/4 top-50 rounded-2xl shadow-xl 
              backdrop-filter backdrop-blur-sm bg-gradient-to-br translate-y-2 from-gray-400/30 to-gray-900/10
               transition-all duration-300 ease-in-out transform
                 ${calShow

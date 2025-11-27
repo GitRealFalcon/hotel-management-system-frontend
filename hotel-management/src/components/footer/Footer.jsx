@@ -2,10 +2,12 @@ import React from 'react'
 import Logo from "../Logo"
 import { Link } from 'react-router-dom'
 import Button from "../Button"
+import { useSelector } from 'react-redux'
 
 
 
 const Footer = () => {
+  const {isAuthenticated} = useSelector((state)=>state.auth)
   return (
     <footer className='w-full h-[750px]  fifth:h-[550px] md:h-[400px] dark:bg-[var(--bg-secondry)] bg-[#FFFFFF]  flex flex-col items-center gap-7 justify-center p-5'>
       <div className='flex justify-between w-full'>
@@ -24,11 +26,11 @@ const Footer = () => {
           <span className='font-semibold dark:text-[var(--text-primary)]  text-[#1A202C]'>Service</span>
           <span className='font-semibold text-gray-400'>Find a hotel</span>
           <span className='font-semibold text-gray-400'>Location</span>
-          <div className='flex gap-2 h-3.5 items-center'>
-            <span className='font-semibold text-gray-400'>Sign up</span>
+          {!isAuthenticated && <div className='flex gap-2 h-3.5 items-center'>
+            <Link to={"/signup"}><span className='font-semibold text-gray-400'>Sign up</span></Link>
             <span className='h-full border-gray-400 border-x'></span>
-            <span className='font-semibold text-gray-400'>Log in</span>
-            </div>
+            <Link to={"/login"}><span className='font-semibold text-gray-400'>Log in</span></Link>
+            </div>}
         </div>
 
         <div className='flex flex-col gap-2  text-sm'>

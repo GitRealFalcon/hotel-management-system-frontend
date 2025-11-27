@@ -181,7 +181,7 @@ const Home = () => {
       <div
         ref={calendarRef}
         className={`
-           fixed left-1/4 top-72 rounded-2xl shadow-xl 
+           fixed left-2 forth:left-1/4 top-72 rounded-2xl shadow-xl 
              backdrop-filter backdrop-blur-sm bg-gradient-to-br translate-y-2 from-gray-400/30 to-gray-900/10
               transition-all duration-300 ease-in-out transform
                 ${calShow
@@ -198,8 +198,8 @@ const Home = () => {
           }
         />
       </div>
-      <div ref={addRoomRef} className={`fixed left-1/2 top-72  backdrop-filter backdrop-blur-sm bg-gradient-to-br translate-y-2 from-gray-400/30 to-gray-900/10
-              transition-all duration-300 ease-in-out transform w-1/3 h-40 flex flex-col justify-around items-center rounded-lg  ${addRoomShow
+      <div ref={addRoomRef} className={`fixed left-1/6 forth:left-1/4 third:left-1/2 top-80 third:top-72  backdrop-filter backdrop-blur-sm bg-gradient-to-br translate-y-2 from-gray-400/30 to-gray-900/10
+              transition-all duration-300 ease-in-out transform w-[70%] forth:w-1/2 third:w-1/3 h-40 flex flex-col justify-around items-center rounded-lg  ${addRoomShow
           ? "opacity-100 scale-100 visible"
           : "opacity-0 scale-95 invisible pointer-events-none"
         }`}>
