@@ -15,6 +15,7 @@ const authSlice = createSlice({
   initialState,
   reducers: {
     logOut: (state) => {
+      localStorage.removeItem("token")
       state.user = null;
       state.isAuthenticated = false;
       state.error = null;
