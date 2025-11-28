@@ -39,7 +39,7 @@ export const fetchUser = createAsyncThunk(
         ? { headers: { Authorization: `Bearer ${token}` } }
         : {};
 
-      const res = await api.get("users/get-user-details" );
+      const res = await api.get("users/get-user-details",token );
       return res.data.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(handleError(error));
