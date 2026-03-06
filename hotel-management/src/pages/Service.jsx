@@ -21,7 +21,7 @@ const Services = () => {
           <div className="card-glass p-6 md:p-8 backdrop-blur-sm rounded-xl md:rounded-2xl shadow-xl">
 
            
-            <h1 className="text-[28px] font-semibold text-[#1A202C]">
+            <h1 className="text-[28px] font-bold text-[#183357]">
               Our Services
             </h1>
 

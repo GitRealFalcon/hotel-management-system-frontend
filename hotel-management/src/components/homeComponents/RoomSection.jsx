@@ -88,7 +88,7 @@ const dispatch = useDispatch()
 
       <div className='grid grid-cols-1 forth:grid-cols-2 third:grid-cols-3 gap-3'>
 
-        {rooms.map((room) => <div key={room._id} className='transform transition-all duration-300 hover:scale-105'><RoomCard
+        {rooms.map((room) => <div key={room._id} className='transform transition-all dark:border rounded-xl dark:border-gray-800 duration-300 hover:scale-105'><RoomCard
           
           type={room.type}
           image={room.image[0].secure_url}

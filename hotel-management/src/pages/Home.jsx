@@ -42,7 +42,7 @@ const Home = () => {
   };
 
   useEffect(() => {
-    function handleClickOutside(event) {
+    function handleClickOutside(event) { 
       if (
         calendarRef.current &&
         !calendarRef.current.contains(event.target)

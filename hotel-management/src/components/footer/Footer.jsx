@@ -11,7 +11,7 @@ const Footer = () => {
   return (
     <footer className='w-full h-[750px]  fifth:h-[550px] md:h-[400px] dark:bg-[var(--bg-secondry)] bg-[#FFFFFF]  flex flex-col items-center gap-7 justify-center p-5'>
       <div className='flex justify-between w-full'>
-        <Logo height={60} width={60} />
+        <Link to={"/"}><Logo height={60} width={60} /></Link>
         <div className=' flex gap-3'>
           <Link to={"https://www.facebook.com/Falcon.web.dev/"} target='_blank'> <img className='border dark:bg-gray-300 rounded-full p-1 w-7 h-7' src="/facebook-02-stroke-rounded.svg" alt="facbook" /> </Link>
           <Link to={"https://github.com/GitRealFalcon"} target='_blank'> <img className='border dark:bg-gray-300 rounded-full p-1 w-7 h-7' src="/github-stroke-rounded.svg" alt="github" /> </Link>
@@ -35,7 +35,7 @@ const Footer = () => {
 
         <div className='flex flex-col gap-2  text-sm'>
           <span className='font-semibold dark:text-[var(--text-primary)]  text-[#1A202C]'>Company</span>
-          <span className='font-semibold text-gray-400'>About</span>
+          <Link to={"/about"}><span className='font-semibold text-gray-400'>About</span></Link>
           <span className='font-semibold text-gray-400'>Careers</span>
           <span className='font-semibold text-gray-400'>Media Center</span>
           <span className='font-semibold text-gray-400'>Travel Agents</span> 
@@ -43,7 +43,7 @@ const Footer = () => {
 
         <div className='flex flex-col  gap-2 text-sm'>
           <span className='font-semibold dark:text-[var(--text-primary)]  text-[#1A202C]'>Help</span>
-          <span className='font-semibold text-gray-400'>Customer Support</span>
+          <Link to={"/service"}><span className='font-semibold text-gray-400'>Customer Support</span></Link>
           <span className='font-semibold text-gray-400'>Guest Feedback</span>
           <span className='font-semibold text-gray-400'>Sitemap</span>
         </div>
