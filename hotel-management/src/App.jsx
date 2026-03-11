@@ -9,6 +9,7 @@ import { fetchUser } from "./features/auth/authThunks"
 import { useEffect } from 'react'
 import ScrollToTop from './components/ScrollToTop'
 import SideNavbar from './components/navbar/SideNavbar'
+import Chatbot from './components/chatBot/Chatbot'
 
 function App() {
   const dispatch = useDispatch()
@@ -42,6 +43,7 @@ function App() {
       <main className="grow">
         <ScrollToTop/>
         <Outlet />
+      <Chatbot/>
       </main>
       <Footer />
     </div>
