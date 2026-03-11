@@ -4,7 +4,8 @@ const initialState = {
     isDark : document.documentElement.classList.contains("dark"),
     isOpen: false,
     sideNavebar: false,
-    showProfile: false
+    showProfile: false,
+    showChatbot:false
 }
 
 const themeSlice = createSlice({
@@ -22,10 +23,14 @@ const themeSlice = createSlice({
         },
         toggleShowProfile: (state,action)=>{
             state.showProfile = action.payload
+        },
+        setChatbot : (state,action)=>{
+            state.showChatbot = !state.showChatbot
         }
+
     }
 })
 
-export const {setTheme,toggleSideBar,toggleSideNavbar,toggleShowProfile} = themeSlice.actions
+export const {setTheme,toggleSideBar,toggleSideNavbar,toggleShowProfile,setChatbot} = themeSlice.actions
 
 export default themeSlice.reducer

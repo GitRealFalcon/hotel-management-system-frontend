@@ -5,6 +5,7 @@ import themeReducer from "../features/theme/themeSlice"
 import customerReducer from "../features/customer/customerSlice"
 import bookingReducer from "../features/booking/bookingSlice"
 import transectionReducer from "../features/payment/paymentSlice"
+import chatbotReducer from "../features/chatboot/chatSlice"
 
 const store = configureStore({
   reducer: {
@@ -13,7 +14,8 @@ const store = configureStore({
     theme: themeReducer,
     customer: customerReducer,
     booking: bookingReducer,
-    transection: transectionReducer
+    transection: transectionReducer,
+    chatbot:chatbotReducer
   },
 });
 

@@ -17,12 +17,29 @@ const handlePayment = async ({ amount, bookingId }) => {
     order_id: orderId,
     handler: async function (response) {
       // 3️⃣ Send verification to backend
-     
-        await api.post("transections/verify-payment", {
-          ...response,
-          amount,
-          bookingId,
-        });
+     try {
+       const verifyRes=  await api.post("transections/verify-payment", {
+           ...response,
+           amount,
+           bookingId,
+         });
+          
+          if (verifyRes.data.success) {
+          toast.success("Payment Successful");
+
+          // reload page
+          window.location.reload();
+
+          // OR redirect
+          // window.location.href = `/booking/${bookingId}`;
+        }
+      
+     } catch (error) {
+
+      toast.error("Payment verification failed");
+     }
+
+
      
     },
     theme: { color: "#3399cc" },
@@ -30,6 +47,7 @@ const handlePayment = async ({ amount, bookingId }) => {
 
   const rzp = new window.Razorpay(options);
   rzp.open();
+
 };
 
 export default handlePayment;
