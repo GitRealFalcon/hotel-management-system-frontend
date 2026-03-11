@@ -5,9 +5,8 @@ import Select from '../Select'
 import { NavLink } from 'react-router-dom';
 import Logo from '../Logo';
 import { useSelector, useDispatch } from 'react-redux';
-import { logOut } from '../../features/auth/authSlice';
+import { logOut } from '../../features/auth/authThunks';
 import { toast } from 'react-toastify';
-import api from '../../api/axios';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { setTheme } from '../../features/theme/themeSlice';
 import { toggleSideNavbar } from '../../features/theme/themeSlice';
@@ -53,7 +52,7 @@ const Navbar = () => {
     }, [])
     const handleLogout = async () => {
         try {
-            await api.get("users/logout")
+           
             dispatch(logOut())
             toast.info("LogOut successfully")
 

@@ -6,7 +6,7 @@ import { setTheme } from '../../features/theme/themeSlice'
 import { toggleSideBar } from '../../features/theme/themeSlice'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { Link } from 'react-router-dom'
-import { logOut } from '../../features/auth/authSlice'
+import { logOut } from '../../features/auth/authThunks'
 import { toast } from 'react-toastify'
 import api from '../../api/axios'
 
@@ -47,7 +47,6 @@ const DashboardNavbar = () => {
 
   const handleLogout = async () => {
     try {
-      await api.get("users/logout")
       dispatch(logOut())
       toast.success("Logout successfully")
     } catch (error) {

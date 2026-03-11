@@ -10,11 +10,14 @@ import EditProfile from '../components/profileComponents/EditProfile'
 
 const Profile = () => {
   const user = useSelector((state) => state.auth.user);
-  const [activeBooking, setActiveBooking] = useState(null);
+  const [activeBooking, setActiveBooking] = useState([]);
   const [loading, setLoading] = useState(true);
   const [showBooking, setshowBooking] = useState(false)
   const [booking, setBooking] = useState("")
   const [showEdit, setshowEdit] = useState(false)
+console.log(activeBooking);
+console.log(booking);
+
 
 
   useEffect(() => {
@@ -146,19 +149,21 @@ const Profile = () => {
             </div>
             <div className='w-full border-gray-300 border-b mb-2'></div>
             <div className='flex  flex-col gap-1'>
-              {activeBooking ? (
-                <div onClick={() => handleBookingClick(activeBooking._id)}>
+              {activeBooking ? activeBooking.map((Booking)=>{
+
+                <div onClick={() => handleBookingClick(Booking._id)}>
                   <BookingCard
-                    isPayed={activeBooking.payment.isPayed}
-                    bookingId={activeBooking._id}
-                    roomNo={activeBooking.roomNo}
-                    checkIn={activeBooking.checkIn}
-                    checkOut={activeBooking.checkOut}
-                    amount={activeBooking.totalAmount}
-                    active={activeBooking.status}
+                    isPayed={Booking.payment.isPayed}
+                    bookingId={Booking._id}
+                    roomNo={Booking.roomNo}
+                    checkIn={Booking.checkIn}
+                    checkOut={Booking.checkOut}
+                    amount={Booking.totalAmount}
+                    active={Booking.status}
                   />
                 </div>
-              ) : (
+              })
+               : (
                 <p className='dark:text-[var(--text-primary)] overflow-clip text-[#1A202C] font-semibold'>No active booking found.</p>
               )}
             </div>
