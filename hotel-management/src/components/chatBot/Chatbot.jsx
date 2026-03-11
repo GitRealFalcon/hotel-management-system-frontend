@@ -176,7 +176,7 @@ const Chatbot = () => {
                     />
 
                     <button onClick={handleclick} className="p-2 cursor-pointer">
-                        <img src="src/assets/send.svg" alt="send" className="w-5 h-5" />
+                        <img src="/send.svg" alt="send" className="w-5 h-5" />
                     </button>
                 </footer>
 
@@ -186,13 +186,7 @@ const Chatbot = () => {
                         <HugeiconsIcon icon={BotIcon} color="#8867E8" width="50px" height="50px" />
                     </div>
                 }
-               {!showChatbot && <DotLottieReact
-                    src="https://lottie.host/c665ba08-b3b1-456a-a697-1ea2592c01c9/JLluvedyL2.lottie"
-                    
-                    loop
-                    autoplay
-                    speed='0.5'
-                />}
+               {!showChatbot &&  <HugeiconsIcon icon={BotIcon} color="#8867E8" width="50px" height="50px" />}
             </div>
         </div>
     )
