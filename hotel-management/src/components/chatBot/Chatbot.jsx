@@ -1,7 +1,7 @@
 import { useState,useEffect,useRef } from 'react'
 import { DotLottieReact } from '@lottiefiles/dotlottie-react'
 import { HugeiconsIcon } from '@hugeicons/react'
-import { BotIcon } from '@hugeicons/core-free-icons'
+import { BotIcon,Cancel01Icon } from '@hugeicons/core-free-icons'
 import { useDispatch, useSelector } from 'react-redux'
 import { chatBotApi, userInput } from '../../features/chatboot/chatSlice'
 import dayjs from 'dayjs'
@@ -60,7 +60,7 @@ const Chatbot = () => {
                                 {chat.text}
                             </div>}
                             {chat.error && <div className={` rounded-br-md bg-red-300 p-2 font-sans text-sm font-semibold  max-w-[80%] rounded-t-md `}>
-                                {chat.errorText === "invalid signature" ? "Login Account?" : chat.errorText}
+                                { ["invalid signature","unathorized request","jwt malformed"].includes(chat.errorText) ? "Login Account?" : chat.errorText}
                             </div>}
                            
                             {Array.isArray(chat) && (
@@ -181,12 +181,14 @@ const Chatbot = () => {
                 </footer>
 
             </div> }
-            <div onClick={toggleChatboot} className='cursor-pointer w-fit' >
-                {showChatbot && <div className="p-2 bg-gray-100 rounded-full">
-                        <HugeiconsIcon icon={BotIcon} color="#8867E8" width="50px" height="50px" />
+            <div onClick={toggleChatboot} className='cursor-pointer w-fit mt-1' >
+                {showChatbot && <div className=" bg-gray-100 border-4 border-[#8867E8] rounded-full">
+                        <HugeiconsIcon icon={Cancel01Icon} color="#8867E8" width="40px" height="40px" />
                     </div>
                 }
-               {!showChatbot &&  <HugeiconsIcon icon={BotIcon} color="#8867E8" width="50px" height="50px" />}
+               {!showChatbot &&  <div className="p-2 bg-gray-100 rounded-full">
+                        <HugeiconsIcon icon={BotIcon} color="#8867E8" width="50px" height="50px" />
+                    </div>}
             </div>
         </div>
     )
